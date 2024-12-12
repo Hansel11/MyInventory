@@ -6,6 +6,8 @@ import TextField from "@mui/material/TextField";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../utils/useAuth";
+import { doc, getDoc, setDoc, Timestamp, updateDoc } from "firebase/firestore";
+import { db } from "../utils/FirebaseConfig";
 
 type FormValues = {
   itemID: number;
@@ -31,9 +33,7 @@ export default function ItemForm({ open, handleClose, handleConfirm, toImport, w
     useForm<FormValues>({});
   const { errors } = formState;
   const [isLoading, setIsLoading] = useState(false);
-  const { userID, token } = useAuth();
-  
-  const url = import.meta.env.VITE_API_URL;
+  // const { userID, token } = useAuth();
 
   const closeForm = () => {
     reset(formData);
@@ -58,44 +58,99 @@ export default function ItemForm({ open, handleClose, handleConfirm, toImport, w
   const sendUpdateData = async (data: FormValues[]) => {
     setIsLoading(true);
 
-    await fetch(url + "/barang?userID=" + userID, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => {
-        if (response.ok) {
-          setSnackbar({
-            children: "Data successfully added!",
-            severity: "success",
-          });
-          return response.json();
-        } else {
-          return response.json().then((err) => {
-            setSnackbar({
-              children: err.detail,
-              severity: "error",
-            });
-            console.error(
-              `Error: ${err}`,
-            );
-          });
-        }
-      })
-      .then((res) => {
+    try {
+
+      for (const item of data) {
+        console.log(item.itemID); 
+
         
-        reset();
-        handleConfirm(res);
-      })
-      .catch((error) => {
-        console.error("Error:", error.message);
-      })
-      .finally(() => {
-        setIsLoading(false);
+        if (item.itemID == 0) {
+          
+          const itemCountref = doc(db, "counter", "items");
+          const itemCountsns = await getDoc(itemCountref);
+          const newItemID = itemCountsns.data()?.count + 1;
+          const newItemRef = doc(db, "items", newItemID.toString());
+          item.itemID = newItemID;
+          await setDoc(newItemRef, item);
+          await updateDoc(itemCountref, { count: newItemID });
+
+
+          const mutCountref = doc(db, "counter", "mutations");
+          const mutCountsns = await getDoc(mutCountref);
+          const newMutID = mutCountsns.data()?.count + 1;
+          const mtn = doc(db, "mutations", newMutID.toString());
+          await setDoc(mtn, {
+            mutationID: newMutID,
+            accountNo: item.accountNo,
+            description: item.description,
+            mutationDate: Timestamp.fromDate(new Date()),
+            mutationType: "INITIAL STOCK",
+            stockIn: 0,
+            stockOut: 0,
+            stockResult: item.amount,
+            mutationNo: null,
+            client: null
+          });
+          await updateDoc(mutCountref, { count: newMutID });
+          console.log(`Added: ${item.description}`);
+
+        } else {
+          const docRef = doc(db, "items", item.itemID.toString());
+          await updateDoc(docRef, item);
+          console.log(`Updated: ${item.description}`);
+        }
+      }
+      setSnackbar({
+        children: "Data successfully saved!",
+        severity: "success",
       });
+      reset();
+      handleConfirm(data);
+
+    } catch (error) {
+      console.error("Error importing data:", error);
+    } finally {
+      setIsLoading(false);
+    }
+
+    // await fetch(url + "/barang?userID=" + userID, {
+    //   method: "POST",
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(data),
+    // })
+    //   .then((response) => {
+    //     if (response.ok) {
+    //       setSnackbar({
+    //         children: "Data successfully added!",
+    //         severity: "success",
+    //       });
+    //       return response.json();
+    //     } else {
+    //       return response.json().then((err) => {
+    //         setSnackbar({
+    //           children: err.detail,
+    //           severity: "error",
+    //         });
+    //         console.error(
+    //           `Error: ${err}`,
+    //         );
+    //       });
+    //     }
+    //   })
+    //   .then((res) => {
+        
+    //     reset();
+    //     handleConfirm(res);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error:", error.message);
+    //   })
+    //   .finally(() => {
+    //     setIsLoading(false);
+    //   });
 
     return data;
   };
@@ -206,7 +261,7 @@ export default function ItemForm({ open, handleClose, handleConfirm, toImport, w
                   variant="contained"
                   sx={{ mt: 3, mb: 2,  fontWeight: "bold"}}
                 >
-                  Simpan
+                  Save
                 </LoadingButton>
               </Box>
             </Box>

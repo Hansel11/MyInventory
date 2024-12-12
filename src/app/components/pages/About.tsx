@@ -3,7 +3,7 @@ import { Box, Button, Typography } from '@mui/material';
 import { Link } from "react-router-dom";
 import CustomHeaderBox from '../utils/CustomHeaderBox';
 
-// import ImportData from '../utils/ImportData';
+import ImportData from '../utils/ImportData';
 
 export default function About() {
   return (
@@ -12,7 +12,7 @@ export default function About() {
       subtitle={
         <>
           {/* FOR DEBUGGING PURPOSES */}
-          {/* <ImportData></ImportData> */}
+          <ImportData></ImportData>
           {/* FOR DEBUGGING PURPOSES */}
 
           <Box>

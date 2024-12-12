@@ -1,5 +1,5 @@
 import { doc, getDoc, setDoc, Timestamp, updateDoc } from "firebase/firestore";
-import { db } from "./FirebaseConfig"; // Adjust to your Firebase setup
+import { db } from "./FirebaseConfig";
 
 const warehouseData = [
   {
@@ -2940,66 +2940,88 @@ const mutationData = [
 	}
 ];
 
+const counter = [
+  {
+    counterName: "warehouses",
+    count: 2,
+  },
+  {
+    counterName: "items",
+    count: 97,
+  },
+  {
+    counterName: "mutations",
+    count: 97,
+  },
+];
+
 const ImportData = () => {
   const importData = async () => {
-    try {
-      for (const item of warehouseData) {
-        const docRef = doc(db, "warehouses", item.warehouseID.toString()); // Correct usage: Firestore instance, collection name, document ID
-        const docSnapshot = await getDoc(docRef);
+    // try {
+    //   for (const item of warehouseData) {
+    //     const docRef = doc(db, "warehouses", item.warehouseID.toString());
+    //     const docSnapshot = await getDoc(docRef);
+    //     if (!docSnapshot.exists()) {
+    //       await setDoc(docRef, item);
+    //       console.log(`Added: ${item.name}`);
+    //     } else {
+    //       console.log(`Skipped: ${item.name} (already exists)`);
+    //     }
+    //   }
+    //   console.log("Data import completed");
+    // } catch (error) {
+    //   console.error("Error importing data:", error);
+    // }
+    // try {
+    //   for (const item of itemData) {
+    //     const docRef = doc(db, "items", item.itemID.toString());
+    //     const docSnapshot = await getDoc(docRef);
+    //     if (!docSnapshot.exists()) {
+    //       await setDoc(docRef, item);
+    //       console.log(`Added: ${item.description}`);
+    //     } else {
+    //       console.log(`Skipped: ${item.description} (already exists)`);
+    //     }
+    //   }
+    //   console.log("Data import completed");
+    // } catch (error) {
+    //   console.error("Error importing data:", error);
+    // }
+    // try {
+    //   for (const item of mutationData) {
+    //     const docRef = doc(db, "mutations", item.mutationID.toString());
+    //     const docSnapshot = await getDoc(docRef);
+    //     if (!docSnapshot.exists()) {
+    //       await setDoc(docRef, item);
+    //       await updateDoc(docRef, {
+    //         mutationDate: Timestamp.fromDate(new Date( item.mutationDate))
+    //       });
+    //       console.log(`Added: ${item.mutationID}`);
+    //     } else {
+    //       await updateDoc(docRef, {
+    //         mutationDate: Timestamp.fromDate(new Date(item.mutationDate)),
+    //       });
+    //       console.log(`Skipped: ${item.mutationID} (already exists)`);
+    //     }
+    //   }
+    //   console.log("Data import completed");
+    // } catch (error) {
+    //   console.error("Error importing data:", error);
+    // }
 
+    try {
+      for (const item of counter) {
+        const docRef = doc(db, "counter", item.counterName.toString());
+        const docSnapshot = await getDoc(docRef);
         if (!docSnapshot.exists()) {
           await setDoc(docRef, item);
-          console.log(`Added: ${item.name}`);
+          console.log(`Added: ${item.counterName}`);
         } else {
-          console.log(`Skipped: ${item.name} (already exists)`);
+          console.log(`Skipped: ${item.counterName} (already exists)`);
         }
       }
-
       console.log("Data import completed");
-    } catch (error) {
-      console.error("Error importing data:", error);
-    }
 
-    try {
-      for (const item of itemData) {
-        const docRef = doc(db, "items", item.itemID.toString());
-        const docSnapshot = await getDoc(docRef);
-
-        if (!docSnapshot.exists()) {
-          await setDoc(docRef, item);
-          console.log(`Added: ${item.description}`);
-        } else {
-          console.log(`Skipped: ${item.description} (already exists)`);
-        }
-      }
-
-      console.log("Data import completed");
-    } catch (error) {
-      console.error("Error importing data:", error);
-    }
-
-    try {
-      for (const item of mutationData) {
-        const docRef = doc(db, "mutations", item.mutationID.toString());
-        const docSnapshot = await getDoc(docRef);
-
-
-        if (!docSnapshot.exists()) {
-          await setDoc(docRef, item);
-          await updateDoc(docRef, {
-            mutationDate: Timestamp.fromDate(new Date( item.mutationDate))
-          });
-          console.log(`Added: ${item.mutationID}`);
-
-        } else {
-          await updateDoc(docRef, {
-            mutationDate: Timestamp.fromDate(new Date(item.mutationDate)),
-          });
-          console.log(`Skipped: ${item.mutationID} (already exists)`);
-        }
-      }
-
-      console.log("Data import completed");
     } catch (error) {
       console.error("Error importing data:", error);
     }

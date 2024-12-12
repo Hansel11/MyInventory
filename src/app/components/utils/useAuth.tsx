@@ -19,15 +19,15 @@ export default function useAuth() {
     return sessionStorage.getItem("role");
   };
 
-  const getGudangAccess = () => {
-    return sessionStorage.getItem("gudangAccess");
+  const getwarehouseAccess = () => {
+    return sessionStorage.getItem("warehouseAccess");
   };
 
   const [token, setToken] = useState(getToken());
   const [username, setUsername] = useState(getUsername());
   const [userID, setUserID] = useState(getUserID());
   const [role, setRole] = useState(getRole());
-  const [gudangAccess, setGudangAccess] = useState(getGudangAccess());
+  const [warehouseAccess, setWarehouseAccess] = useState(getwarehouseAccess());
   
   const saveToken = (userToken: any) => {
     sessionStorage.setItem("token", JSON.stringify(userToken));
@@ -49,9 +49,9 @@ export default function useAuth() {
     setRole(role);
   };
 
-  const saveGudangAccess = (gudangAccess: string) => {
-    sessionStorage.setItem("gudangAccess", gudangAccess);
-    setGudangAccess(gudangAccess);
+  const saveWarehouseAccess = (warehouseAccess: string) => {
+    sessionStorage.setItem("warehouseAccess", warehouseAccess);
+    setWarehouseAccess(warehouseAccess);
   };
 
   return {
@@ -59,11 +59,11 @@ export default function useAuth() {
     setUsername: saveUsername,
     setUserID : saveUserID,
     setRole: saveRole,
-    setGudangAccess: saveGudangAccess,
+    setWarehouseAccess: saveWarehouseAccess,
     token,
     username,
     role,
-    gudangAccess,
+    warehouseAccess,
     userID
   };
 }

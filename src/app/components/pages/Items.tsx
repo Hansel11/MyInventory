@@ -13,7 +13,6 @@ import { db } from '../utils/FirebaseConfig';
 const columns: GridColDef[] = [
   { field: "accountNo", headerName: "Account No.", width: 150, editable: true },
   { field: "description", headerName: "Item", width: 420, editable: true },
-  // { field: "kategori", headerName: "Kategori", width: 200, editable: true },
   { field: "amount", headerName: "Amount", type: "number", width: 100, editable: true },
   { field: "unit", headerName: "Unit", width: 120, editable: true }
 ];
@@ -23,7 +22,6 @@ type FormValues = {
   warehouseID: number;
   accountNo: string;
   description: string;
-  // kategori: string;
   amount: number;
   unit: string;
 };
@@ -83,7 +81,6 @@ function Items(props: ItemProps) {
       var newRow = newRows[0];
       newRow.id = newRow.itemID;
       const existingRow = rows.find((row) => row.id === newRow.id);
-      console.log("peko"+newRow.description);
 
       if (existingRow) {
         const updatedRows = rows.map((row) =>
@@ -199,14 +196,14 @@ function Items(props: ItemProps) {
       let newForm = Object.assign({}, initForm);
       newForm.accountNo = newNoAcc;
       setFormData(newForm);
-      setFormType("Tambah");
+      setFormType("Add");
       setIsFormOpen(true);
     };
 
     const updateData = async (rowID: GridRowId) => {
       const data = rows.find((row) => row.id === rowID) as FormValues;
       setFormData(data);
-      setFormType("Ubah");
+      setFormType("Edit");
       setIsFormOpen(true);
     };
 

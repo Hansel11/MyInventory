@@ -2,22 +2,6 @@ import { useState } from "react";
 
 export default function useTheme() {
 
-  // const getDarkMode = () => {
-  //   return Boolean(sessionStorage.getItem("theme"));
-  // };
-
-  // const [darkMode, setDarkMode] = useState(getDarkMode());
-
-  // const savedarkMode = (theme: boolean) => {
-  //   sessionStorage.setItem("darkMode", String(theme));
-  //   setDarkMode(theme);
-  // };
-
-  // return {
-  //   setDarkMode: savedarkMode,
-  //   darkMode
-  // };
-
   const getTheme = () => {
     return sessionStorage.getItem("theme");
   };

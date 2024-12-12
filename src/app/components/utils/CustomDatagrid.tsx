@@ -13,7 +13,7 @@ import {
 } from "@mui/x-data-grid";
 import { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
-import useAuth from "./useAuth";
+// import useAuth from "./useAuth";
 
 function CustomDataGrid(props: any) {
     const {
@@ -45,8 +45,9 @@ function CustomDataGrid(props: any) {
       
     } = props;
 
-    const { role } = useAuth();
-    const crudAccess = role != null && ["Admin", "Staff Gudang"].includes(role);
+    // const { role } = useAuth();
+    const role = "Admin";
+    const crudAccess = role != null && ["Admin", "Staff"].includes(role);
     
     const [snackbar, setSnackbar] = useState<Pick<
         AlertProps,
@@ -89,10 +90,10 @@ function CustomDataGrid(props: any) {
         
         setPopup(false);
         setSnackbar({
-          children: `Data berhasil dihapus`,
+          children: `Data successfully deleted`,
           severity: "success",
         });
-        setRows(rows.filter((row: any) => row.id !== toDelete));
+        // setRows(rows.filter((row: any) => row.id !== toDelete));
     };
 
     const handleCloseSnackbar = () => setSnackbar(null);
@@ -120,7 +121,7 @@ function CustomDataGrid(props: any) {
           importData(file);
         } else {
           setSnackbar({
-            children: "File harus berbentuk .csv",
+            children: "File extension is not supported! (Required: .csv)",
             severity: "error",
           });
         }
@@ -197,7 +198,7 @@ function CustomDataGrid(props: any) {
                   fontWeight: "bold",
                 }}
               >
-                Tambah {dataType}
+                Add {dataType}
               </Button>
             ) : null}
           </Box>
@@ -269,16 +270,14 @@ function CustomDataGrid(props: any) {
         >
           <DialogTitle fontWeight="bold">Hapus data</DialogTitle>
           <DialogContent>
-            <DialogContentText>
-              Apakah anda mau menghapus {dataType} ini?
-            </DialogContentText>
+            <DialogContentText>Delete this {dataType}?</DialogContentText>
           </DialogContent>
           <DialogActions>
             <Button onClick={closePopup} color="primary">
-              Batal
+              Cancel
             </Button>
             <Button onClick={confirmDelete} color="error">
-              Hapus
+              Delete
             </Button>
           </DialogActions>
         </Dialog>
@@ -294,20 +293,15 @@ function CustomDataGrid(props: any) {
             },
           }}
         >
-          <DialogTitle fontWeight="bold">
-            Import Data (BETA)
-          </DialogTitle>
+          <DialogTitle fontWeight="bold">Import Data (BETA)</DialogTitle>
           <DialogContent>
             <DialogContentText>
               <Box>
-                Untuk melakukan import data ke table, mohon untuk memformat file
-                yang ingin diimport dengan extension .csv, siapkan baris pertama
-                untuk nama kolom <span style={{fontWeight:"bold"}}>(keterangan, jumlah, satuan)</span>, dan pisahkan tiap kolom dengan semicolon (;)
+                To import data into the table, please store the data in a .csv file.
+                Put the attribute name on the first row, seperated by semicolons(;)
+                as such: <span style={{ fontWeight: "bold" }}>description; amount; unit</span>
               </Box>
               <br />
-              {/* <Box fontWeight="bold" display="inline">
-                Contoh [File.csv]:
-              </Box> */}
 
               <Box>
                 <Link to="/ImportSample.csv" target="_blank" download>
@@ -323,7 +317,7 @@ function CustomDataGrid(props: any) {
                       fontWeight: "bold",
                     }}
                   >
-                    Contoh File {"(.csv)"}
+                    Example File {"(.csv)"}
                   </Button>
                 </Link>
               </Box>
@@ -331,7 +325,7 @@ function CustomDataGrid(props: any) {
           </DialogContent>
           <DialogActions>
             <Button onClick={closeImportHelp} color="primary">
-              Tutup
+              Close
             </Button>
           </DialogActions>
         </Dialog>
