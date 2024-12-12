@@ -5,7 +5,6 @@ import { useEffect, useState, Dispatch, SetStateAction } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CustomDataGrid from '../utils/CustomDatagrid';
 import CustomHeaderBox from '../utils/CustomHeaderBox';
-import useAuth from '../utils/useAuth';
 import ItemForm from './ItemForm';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../utils/FirebaseConfig';
@@ -18,8 +17,7 @@ const columns: GridColDef[] = [
 ];
 
 type FormValues = {
-  itemID: number;
-  warehouseID: number;
+  warehouseID: string;
   accountNo: string;
   description: string;
   amount: number;
@@ -27,8 +25,7 @@ type FormValues = {
 };
 
 const initForm: FormValues = {
-  itemID: 0,
-  warehouseID: 0,
+  warehouseID: "",
   accountNo: "",
   description: "",
   amount: 0,
@@ -36,16 +33,13 @@ const initForm: FormValues = {
 };
 
 interface ItemProps {
-  warehouse: number;
-  setWarehouse: Dispatch<SetStateAction<number>>;
+  setWarehouseID: Dispatch<SetStateAction<string>>;
   warehouseList: any[];
-  // setWarehouseList: Dispatch<SetStateAction<any[]>>;
-  warehouseCode: string;
+  warehouseID: string;
 }
 
 function Items(props: ItemProps) {
 
-  const url = import.meta.env.VITE_API_URL;
   const [rows, setRows] = useState<GridRowsProp>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [sortModel, setSortModel] = useState([]);
@@ -79,7 +73,7 @@ function Items(props: ItemProps) {
     }
     else {
       var newRow = newRows[0];
-      newRow.id = newRow.itemID;
+      newRow.id = newRow.accountNo;
       const existingRow = rows.find((row) => row.id === newRow.id);
 
       if (existingRow) {
@@ -97,29 +91,10 @@ function Items(props: ItemProps) {
     setSortModel([]);
   };
 
-  //NEED TO IMPLEMENT, DONT FORGER TO CHANGE UPDATE REQUEST FROM warehouseID TO itemID
-
-  // const handleConfirmForm = (newRow: any) => {
-  //   const existingRow = rows.find((row) => row.id === newRow.id);
-
-  //   if (existingRow) {
-  //     const updatedRows = rows.map((row) =>
-  //       row.id === newRow.id ? { ...row, ...newRow } : row
-  //     );
-  //     setRows(updatedRows);
-  //   } else {
-  //     setRows([...rows, newRow]);
-  //   }
-  //   setIsFormOpen(false);
-  // };
-
-  const {token, userID} = useAuth();
-
   const navigate = useNavigate();
 
   const viewData = (item: GridRowParams) => {
     navigate("/mutation", { state: { 
-      itemID: item.id,
       itemName: item.row.description,
       accountNo: item.row.accountNo,
       amount: item.row.amount
@@ -128,23 +103,27 @@ function Items(props: ItemProps) {
 
   const [newNoAcc, setNewNoAcc] = useState("");
 
+  const resetNewNoAcc = async () => {
+    setNewNoAcc(
+      rows[0] == null
+        ? props.warehouseID + "00001"
+        : String(Number(rows[rows.length - 1].accountNo) + 1)
+    );
+  };
+
   const fetchItems = async () => {
     try {
       const collectionRef = collection(db, "items");
-      const q = query(collectionRef, where("warehouseID", "==", props.warehouse)); // Query with condition
+      const q = query(collectionRef, where("warehouseID", "==", props.warehouseID)); // Query with condition
 
       const snapshot = await getDocs(q);
       const itemData = await snapshot.docs.map((doc: any) => ({
         id: doc.id,
         ...doc.data(),
       }));
-      
-      setRows(itemData);
-      setNewNoAcc(
-        rows[0] == null
-          ? props.warehouseCode + "00001"
-          : String(Number(rows[rows.length - 1].AccountNo) + 1)
-      );
+
+      await setRows(itemData);
+      resetNewNoAcc();
 
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -155,22 +134,19 @@ function Items(props: ItemProps) {
 
   useEffect(() => {
     fetchItems();
-  }, [props.warehouse, props.warehouseList]);
+  }, [props.warehouseID, props.warehouseList]);
 
   useEffect(()=>{
-    setNewNoAcc(
-      rows[0] == null
-        ? props.warehouseCode + "00001"
-        : String(Number(rows[rows.length - 1].accountNo) + 1));
+    resetNewNoAcc();
   },[rows]);
 
   const deleteData = async (rowID: GridRowId) => {
 
     setIsLoading(true);
-    await fetch(url + `/barang?userID=${userID}&itemID=${rowID}`, {
+    await fetch( `/barang?userID=$&itemID=${rowID}`, {
       method: "DELETE",
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer `,
         "Content-Type": "application/json",
       },
     })
@@ -189,12 +165,13 @@ function Items(props: ItemProps) {
 
   const updateWarehouse = (updateProps: any ) => {
     const warehouseID = updateProps.target.value;
-    props.setWarehouse(warehouseID);
+    props.setWarehouseID(warehouseID);
   }
 
     const addData = async () => {
       let newForm = Object.assign({}, initForm);
       newForm.accountNo = newNoAcc;
+      newForm.warehouseID = props.warehouseID;
       setFormData(newForm);
       setFormType("Add");
       setIsFormOpen(true);
@@ -254,7 +231,7 @@ function Items(props: ItemProps) {
                   throw new Error();
                 }
                 else{
-                  item.warehouseID = props.warehouse;
+                  item.warehouseID = props.warehouseID;
                   item.accountNo = importNoAcc;
                   importNoAcc = String(Number(importNoAcc)+1);
                 }
@@ -293,9 +270,11 @@ function Items(props: ItemProps) {
         handleClose={handleCloseForm}
         handleConfirm={handleConfirmForm}
         toImport={toImport}
-        warehouseID={props.warehouse}
+        warehouseID={props.warehouseID}
         formData={formData}
         type={formType}
+        newNoAcc={newNoAcc}
+        resetNewNoAcc={resetNewNoAcc}
       />
 
       <CustomHeaderBox
@@ -310,7 +289,7 @@ function Items(props: ItemProps) {
               sx={{
                 minWidth: "200px",
               }}
-              value={props.warehouse}
+              value={props.warehouseID}
               onChange={updateWarehouse}
             >
               {props.warehouseList.map((w: any) => {

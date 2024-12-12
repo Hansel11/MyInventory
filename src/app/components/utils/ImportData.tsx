@@ -3,1294 +3,700 @@ import { db } from "./FirebaseConfig";
 
 const warehouseData = [
   {
-    warehouseID: 1,
-    name: "Food",
-    code: "1115",
-    createTime: "2024-12-11 01:47:14",
-    createBy: 1,
-    updateTime: null,
-    updateBy: null,
-    active: "A",
+	warehouseID: "1115",
+    name: "Food"
   },
   {
-    warehouseID: 2,
-    name: "Others",
-    code: "1114",
-    createTime: "2024-12-11 01:47:14",
-    createBy: 1,
-    updateTime: null,
-    updateBy: null,
-    active: "A",
+	warehouseID: "1114",
+    name: "Others"
   },
 ];
 
 const itemData = [
-	{
-		"itemID" : 1,
-		"accountNo" : "111400001",
-		"warehouseID" : 2,
-		"description" : "BOXER L CHILD",
-		"amount" : 2400,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 2,
-		"accountNo" : "111400002",
-		"warehouseID" : 2,
-		"description" : "BOXER XL CHILD",
-		"amount" : 1200,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 3,
-		"accountNo" : "111400003",
-		"warehouseID" : 2,
-		"description" : "BOXER M TEEN",
-		"amount" : 1200,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 4,
-		"accountNo" : "111400004",
-		"warehouseID" : 2,
-		"description" : "BOXER L TEEN",
-		"amount" : 1200,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 5,
-		"accountNo" : "111400005",
-		"warehouseID" : 2,
-		"description" : "BOXER XL ADULT",
-		"amount" : 600,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 6,
-		"accountNo" : "111400006",
-		"warehouseID" : 2,
-		"description" : "BOXER XXL ADULT",
-		"amount" : 600,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 7,
-		"accountNo" : "111400007",
-		"warehouseID" : 2,
-		"description" : "BOXER XXXL ADULT",
-		"amount" : 900,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 8,
-		"accountNo" : "111400008",
-		"warehouseID" : 2,
-		"description" : "UNDERSHIRT M CHILD",
-		"amount" : 2400,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 9,
-		"accountNo" : "111400009",
-		"warehouseID" : 2,
-		"description" : "UNDERSHIRT L CHILD",
-		"amount" : 2400,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 10,
-		"accountNo" : "111400010",
-		"warehouseID" : 2,
-		"description" : "UNDERSHIRT L TEEN",
-		"amount" : 720,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 11,
-		"accountNo" : "111400011",
-		"warehouseID" : 2,
-		"description" : "UNDERSHIRT XL ADULT",
-		"amount" : 720,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 12,
-		"accountNo" : "111400012",
-		"warehouseID" : 2,
-		"description" : "UNDERSHIRT XXL ADULT",
-		"amount" : 480,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 13,
-		"accountNo" : "111400013",
-		"warehouseID" : 2,
-		"description" : "UNDERSHIRT XXXL ADULT",
-		"amount" : 900,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 14,
-		"accountNo" : "111400014",
-		"warehouseID" : 2,
-		"description" : "FORMAL SHIRT CHILD No.10",
-		"amount" : 240,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 15,
-		"accountNo" : "111400015",
-		"warehouseID" : 2,
-		"description" : "FORMAL SHIRT CHILD No.11",
-		"amount" : 240,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 16,
-		"accountNo" : "111400016",
-		"warehouseID" : 2,
-		"description" : "FORMAL SHIRT CHILD No.12",
-		"amount" : 240,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 17,
-		"accountNo" : "111400017",
-		"warehouseID" : 2,
-		"description" : "FORMAL SHIRT CHILD No.13",
-		"amount" : 240,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 18,
-		"accountNo" : "111400018",
-		"warehouseID" : 2,
-		"description" : "FORMAL SHIRT CHILD No.14",
-		"amount" : 240,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 19,
-		"accountNo" : "111400019",
-		"warehouseID" : 2,
-		"description" : "FORMAL SHIRT CHILD No.15",
-		"amount" : 240,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 20,
-		"accountNo" : "111400020",
-		"warehouseID" : 2,
-		"description" : "FORMAL SHIRT TEEN Sz.M",
-		"amount" : 600,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 21,
-		"accountNo" : "111400021",
-		"warehouseID" : 2,
-		"description" : "FORMAL SHIRT ADULT Sz.L",
-		"amount" : 600,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 22,
-		"accountNo" : "111400022",
-		"warehouseID" : 2,
-		"description" : "FORMAL SHIRT ADULT Sz.XL",
-		"amount" : 600,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 23,
-		"accountNo" : "111400023",
-		"warehouseID" : 2,
-		"description" : "PANTS ADULT No.33",
-		"amount" : 240,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 24,
-		"accountNo" : "111400024",
-		"warehouseID" : 2,
-		"description" : "PANTS ADULT No.34",
-		"amount" : 240,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 25,
-		"accountNo" : "111400025",
-		"warehouseID" : 2,
-		"description" : "PANTS ADULT No.35",
-		"amount" : 240,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 26,
-		"accountNo" : "111400026",
-		"warehouseID" : 2,
-		"description" : "PANTS ADULT No.36",
-		"amount" : 240,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 27,
-		"accountNo" : "111400027",
-		"warehouseID" : 2,
-		"description" : "PANTS ADULT No.37",
-		"amount" : 240,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 28,
-		"accountNo" : "111400028",
-		"warehouseID" : 2,
-		"description" : "PANTS ADULT No.38",
-		"amount" : 240,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 29,
-		"accountNo" : "111400029",
-		"warehouseID" : 2,
-		"description" : "PANTS ADULT No.39",
-		"amount" : 180,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 30,
-		"accountNo" : "111400030",
-		"warehouseID" : 2,
-		"description" : "PANTS ADULT No.40",
-		"amount" : 180,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 31,
-		"accountNo" : "111400031",
-		"warehouseID" : 2,
-		"description" : "PANTS CHILD No.10",
-		"amount" : 240,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 32,
-		"accountNo" : "111400032",
-		"warehouseID" : 2,
-		"description" : "PANTS CHILD No.11",
-		"amount" : 240,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 33,
-		"accountNo" : "111400033",
-		"warehouseID" : 2,
-		"description" : "PANTS CHILD No.12",
-		"amount" : 240,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 34,
-		"accountNo" : "111400034",
-		"warehouseID" : 2,
-		"description" : "PANTS TEEN No.13",
-		"amount" : 240,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 35,
-		"accountNo" : "111400035",
-		"warehouseID" : 2,
-		"description" : "PANTS TEEN No.14",
-		"amount" : 240,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 36,
-		"accountNo" : "111400036",
-		"warehouseID" : 2,
-		"description" : "PANTS TEEN No.15",
-		"amount" : 240,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 37,
-		"accountNo" : "111400037",
-		"warehouseID" : 2,
-		"description" : "UNDERPANTS Sz.S",
-		"amount" : 1200,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 38,
-		"accountNo" : "111400038",
-		"warehouseID" : 2,
-		"description" : "UNDERPANTS Sz.M",
-		"amount" : 1200,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 39,
-		"accountNo" : "111400039",
-		"warehouseID" : 2,
-		"description" : "UNDERPANTS Sz.L",
-		"amount" : 1080,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 40,
-		"accountNo" : "111400040",
-		"warehouseID" : 2,
-		"description" : "UNDERPANTS Sz.XL",
-		"amount" : 1680,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 41,
-		"accountNo" : "111400041",
-		"warehouseID" : 2,
-		"description" : "UNDERPANTS Sz.XXL",
-		"amount" : 420,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 42,
-		"accountNo" : "111400042",
-		"warehouseID" : 2,
-		"description" : "UNDERPANTS Sz.XXXL",
-		"amount" : 420,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 43,
-		"accountNo" : "111400067",
-		"warehouseID" : 2,
-		"description" : "CASUAL T-SHIRT Sz.XXXL",
-		"amount" : 1080,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 44,
-		"accountNo" : "111400068",
-		"warehouseID" : 2,
-		"description" : "CASUAL T-SHIRT Sz.XXL",
-		"amount" : 1200,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 45,
-		"accountNo" : "111400069",
-		"warehouseID" : 2,
-		"description" : "CASUAL T-SHIRT Sz.XL",
-		"amount" : 1200,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 46,
-		"accountNo" : "111400070",
-		"warehouseID" : 2,
-		"description" : "CASUAL T-SHIRT Sz.L",
-		"amount" : 1200,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 47,
-		"accountNo" : "111400071",
-		"warehouseID" : 2,
-		"description" : "CASUAL T-SHIRT Sz.M",
-		"amount" : 2400,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 48,
-		"accountNo" : "111400072",
-		"warehouseID" : 2,
-		"description" : "CASUAL T-SHIRT Sz.S",
-		"amount" : 1800,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 49,
-		"accountNo" : "111400073",
-		"warehouseID" : 2,
-		"description" : "CASUAL SHORTS Sz.XXXL",
-		"amount" : 1080,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 50,
-		"accountNo" : "111400074",
-		"warehouseID" : 2,
-		"description" : "CASUAL SHORTS Sz.XXL",
-		"amount" : 1200,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 51,
-		"accountNo" : "111400075",
-		"warehouseID" : 2,
-		"description" : "CASUAL SHORTS Sz.XL",
-		"amount" : 1200,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 52,
-		"accountNo" : "111400076",
-		"warehouseID" : 2,
-		"description" : "CASUAL SHORTS Sz.L",
-		"amount" : 1200,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 53,
-		"accountNo" : "111400077",
-		"warehouseID" : 2,
-		"description" : "CASUAL SHORTS Sz.M",
-		"amount" : 2400,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 54,
-		"accountNo" : "111400078",
-		"warehouseID" : 2,
-		"description" : "CASUAL SHORTS Sz.S",
-		"amount" : 1800,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 55,
-		"accountNo" : "111400079",
-		"warehouseID" : 2,
-		"description" : "TOWEL BIG",
-		"amount" : 1380,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 56,
-		"accountNo" : "111400080",
-		"warehouseID" : 2,
-		"description" : "TOWEL SMALL",
-		"amount" : 1308,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 57,
-		"accountNo" : "111400081",
-		"warehouseID" : 2,
-		"description" : "BLANKET",
-		"amount" : 420,
-		"unit" : "Pcs",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 58,
-		"accountNo" : "111500001",
-		"warehouseID" : 1,
-		"description" : "RICE",
-		"amount" : 0,
-		"unit" : "sak",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 59,
-		"accountNo" : "111500002",
-		"warehouseID" : 1,
-		"description" : "FLOUR",
-		"amount" : 0,
-		"unit" : "sak",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 60,
-		"accountNo" : "111500003",
-		"warehouseID" : 1,
-		"description" : "EGG",
-		"amount" : 0,
-		"unit" : "rak",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 61,
-		"accountNo" : "111500004",
-		"warehouseID" : 1,
-		"description" : "WHITE SUGAR",
-		"amount" : 0,
-		"unit" : "karung",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 62,
-		"accountNo" : "111500005",
-		"warehouseID" : 1,
-		"description" : "BROWN SUGAR",
-		"amount" : 0,
-		"unit" : "kg",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 63,
-		"accountNo" : "111500006",
-		"warehouseID" : 1,
-		"description" : "BUTTER",
-		"amount" : 0,
-		"unit" : "karton",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 64,
-		"accountNo" : "111500007",
-		"warehouseID" : 1,
-		"description" : "MILK",
-		"amount" : 0,
-		"unit" : "karton",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 65,
-		"accountNo" : "111500008",
-		"warehouseID" : 1,
-		"description" : "CHOCOLATE MILK",
-		"amount" : 0,
-		"unit" : "karton",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 66,
-		"accountNo" : "111500009",
-		"warehouseID" : 1,
-		"description" : "LOW-FAT MILK",
-		"amount" : 0,
-		"unit" : "karton",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 67,
-		"accountNo" : "111500010",
-		"warehouseID" : 1,
-		"description" : "CHOCOLATE BAR",
-		"amount" : 0,
-		"unit" : "karton",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 68,
-		"accountNo" : "111500011",
-		"warehouseID" : 1,
-		"description" : "COOKING OIL",
-		"amount" : 0,
-		"unit" : "gen",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 69,
-		"accountNo" : "111500012",
-		"warehouseID" : 1,
-		"description" : "VANILLA POWDER",
-		"amount" : 0,
-		"unit" : "pack",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 70,
-		"accountNo" : "111500013",
-		"warehouseID" : 1,
-		"description" : "PENNE",
-		"amount" : 0,
-		"unit" : "liter",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 71,
-		"accountNo" : "111500014",
-		"warehouseID" : 1,
-		"description" : "PINEAPPLE JAM",
-		"amount" : 0,
-		"unit" : "karton",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 72,
-		"accountNo" : "111500015",
-		"warehouseID" : 1,
-		"description" : "CHEDDAR CHEESE",
-		"amount" : 0,
-		"unit" : "karton",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 73,
-		"accountNo" : "111500016",
-		"warehouseID" : 1,
-		"description" : "SYRUP",
-		"amount" : 0,
-		"unit" : "karton",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 74,
-		"accountNo" : "111500017",
-		"warehouseID" : 1,
-		"description" : "CHOCOLATE SPRINKLES",
-		"amount" : 0,
-		"unit" : "karton",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 75,
-		"accountNo" : "111500018",
-		"warehouseID" : 1,
-		"description" : "CHILI POWDER",
-		"amount" : 0,
-		"unit" : "pack",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 76,
-		"accountNo" : "111500019",
-		"warehouseID" : 1,
-		"description" : "MACARONI",
-		"amount" : 0,
-		"unit" : "botol",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 77,
-		"accountNo" : "111500020",
-		"warehouseID" : 1,
-		"description" : "SOYBEAN",
-		"amount" : 0,
-		"unit" : "kg",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 78,
-		"accountNo" : "111500021",
-		"warehouseID" : 1,
-		"description" : "SPRITE 390ML",
-		"amount" : 0,
-		"unit" : "karton",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 79,
-		"accountNo" : "111500022",
-		"warehouseID" : 1,
-		"description" : "TUMERIC",
-		"amount" : 0,
-		"unit" : "kg",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 80,
-		"accountNo" : "111500023",
-		"warehouseID" : 1,
-		"description" : "SOY SAUCE",
-		"amount" : 0,
-		"unit" : "karton",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 81,
-		"accountNo" : "111500024",
-		"warehouseID" : 1,
-		"description" : "CRACKERS",
-		"amount" : 0,
-		"unit" : "karton",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 82,
-		"accountNo" : "111500025",
-		"warehouseID" : 1,
-		"description" : "PEPPER",
-		"amount" : 0,
-		"unit" : "karton",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 83,
-		"accountNo" : "111500026",
-		"warehouseID" : 1,
-		"description" : "BUCKWHEAT NOODLES",
-		"amount" : 0,
-		"unit" : "karton",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 84,
-		"accountNo" : "111500027",
-		"warehouseID" : 1,
-		"description" : "BAKING SODA",
-		"amount" : 0,
-		"unit" : "pack",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 85,
-		"accountNo" : "111500028",
-		"warehouseID" : 1,
-		"description" : "SALT",
-		"amount" : 0,
-		"unit" : "karton",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 86,
-		"accountNo" : "111500029",
-		"warehouseID" : 1,
-		"description" : "SEAWEED",
-		"amount" : 0,
-		"unit" : "karton",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 87,
-		"accountNo" : "111500030",
-		"warehouseID" : 1,
-		"description" : "COCONUT MILK",
-		"amount" : 0,
-		"unit" : "karton",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 88,
-		"accountNo" : "111500031",
-		"warehouseID" : 1,
-		"description" : "CHILI SAUCE",
-		"amount" : 0,
-		"unit" : "gen",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 89,
-		"accountNo" : "111500032",
-		"warehouseID" : 1,
-		"description" : "KETCHUP",
-		"amount" : 0,
-		"unit" : "gen",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 90,
-		"accountNo" : "111500033",
-		"warehouseID" : 1,
-		"description" : "OYSTER SAUCE",
-		"amount" : 0,
-		"unit" : "kaleng",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 91,
-		"accountNo" : "111500034",
-		"warehouseID" : 1,
-		"description" : "WORCHESTERSHIRE SAUCE",
-		"amount" : 0,
-		"unit" : "botol",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 92,
-		"accountNo" : "111500035",
-		"warehouseID" : 1,
-		"description" : "BLACK TEA",
-		"amount" : 0,
-		"unit" : "karton",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 93,
-		"accountNo" : "111500036",
-		"warehouseID" : 1,
-		"description" : "BOTTLED WATER",
-		"amount" : 0,
-		"unit" : "karton",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 94,
-		"accountNo" : "111500037",
-		"warehouseID" : 1,
-		"description" : "PAPER CUP",
-		"amount" : 0,
-		"unit" : "karton",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 95,
-		"accountNo" : "111500038",
-		"warehouseID" : 1,
-		"description" : "PLASTIC SPOON",
-		"amount" : 0,
-		"unit" : "pack",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 96,
-		"accountNo" : "111500039",
-		"warehouseID" : 1,
-		"description" : "SNACK BOX",
-		"amount" : 0,
-		"unit" : "pack",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	},
-	{
-		"itemID" : 97,
-		"accountNo" : "111500040",
-		"warehouseID" : 1,
-		"description" : "RICE BOX",
-		"amount" : 0,
-		"unit" : "pack",
-		"createTime" : "2024-12-12 00:27:56",
-		"createBy" : 1,
-		"updateTime" : null,
-		"updateBy" : null,
-		"active" : "A"
-	}
+    {
+      accountNo: "111400001",
+      warehouseID: "1114",
+      description: "BOXER L CHILD",
+      amount: 2400,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400002",
+      warehouseID: "1114",
+      description: "BOXER XL CHILD",
+      amount: 1200,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400003",
+      warehouseID: "1114",
+      description: "BOXER M TEEN",
+      amount: 1200,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400004",
+      warehouseID: "1114",
+      description: "BOXER L TEEN",
+      amount: 1200,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400005",
+      warehouseID: "1114",
+      description: "BOXER XL ADULT",
+      amount: 600,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400006",
+      warehouseID: "1114",
+      description: "BOXER XXL ADULT",
+      amount: 600,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400007",
+      warehouseID: "1114",
+      description: "BOXER XXXL ADULT",
+      amount: 900,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400008",
+      warehouseID: "1114",
+      description: "UNDERSHIRT M CHILD",
+      amount: 2400,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400009",
+      warehouseID: "1114",
+      description: "UNDERSHIRT L CHILD",
+      amount: 2400,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400010",
+      warehouseID: "1114",
+      description: "UNDERSHIRT L TEEN",
+      amount: 720,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400011",
+      warehouseID: "1114",
+      description: "UNDERSHIRT XL ADULT",
+      amount: 720,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400012",
+      warehouseID: "1114",
+      description: "UNDERSHIRT XXL ADULT",
+      amount: 480,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400013",
+      warehouseID: "1114",
+      description: "UNDERSHIRT XXXL ADULT",
+      amount: 900,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400014",
+      warehouseID: "1114",
+      description: "FORMAL SHIRT CHILD No.10",
+      amount: 240,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400015",
+      warehouseID: "1114",
+      description: "FORMAL SHIRT CHILD No.11",
+      amount: 240,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400016",
+      warehouseID: "1114",
+      description: "FORMAL SHIRT CHILD No.12",
+      amount: 240,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400017",
+      warehouseID: "1114",
+      description: "FORMAL SHIRT CHILD No.13",
+      amount: 240,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400018",
+      warehouseID: "1114",
+      description: "FORMAL SHIRT CHILD No.14",
+      amount: 240,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400019",
+      warehouseID: "1114",
+      description: "FORMAL SHIRT CHILD No.15",
+      amount: 240,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400020",
+      warehouseID: "1114",
+      description: "FORMAL SHIRT TEEN Sz.M",
+      amount: 600,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400021",
+      warehouseID: "1114",
+      description: "FORMAL SHIRT ADULT Sz.L",
+      amount: 600,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400022",
+      warehouseID: "1114",
+      description: "FORMAL SHIRT ADULT Sz.XL",
+      amount: 600,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400023",
+      warehouseID: "1114",
+      description: "PANTS ADULT No.33",
+      amount: 240,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400024",
+      warehouseID: "1114",
+      description: "PANTS ADULT No.34",
+      amount: 240,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400025",
+      warehouseID: "1114",
+      description: "PANTS ADULT No.35",
+      amount: 240,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400026",
+      warehouseID: "1114",
+      description: "PANTS ADULT No.36",
+      amount: 240,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400027",
+      warehouseID: "1114",
+      description: "PANTS ADULT No.37",
+      amount: 240,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400028",
+      warehouseID: "1114",
+      description: "PANTS ADULT No.38",
+      amount: 240,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400029",
+      warehouseID: "1114",
+      description: "PANTS ADULT No.39",
+      amount: 180,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400030",
+      warehouseID: "1114",
+      description: "PANTS ADULT No.40",
+      amount: 180,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400031",
+      warehouseID: "1114",
+      description: "PANTS CHILD No.10",
+      amount: 240,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400032",
+      warehouseID: "1114",
+      description: "PANTS CHILD No.11",
+      amount: 240,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400033",
+      warehouseID: "1114",
+      description: "PANTS CHILD No.12",
+      amount: 240,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400034",
+      warehouseID: "1114",
+      description: "PANTS TEEN No.13",
+      amount: 240,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400035",
+      warehouseID: "1114",
+      description: "PANTS TEEN No.14",
+      amount: 240,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400036",
+      warehouseID: "1114",
+      description: "PANTS TEEN No.15",
+      amount: 240,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400037",
+      warehouseID: "1114",
+      description: "UNDERPANTS Sz.S",
+      amount: 1200,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400038",
+      warehouseID: "1114",
+      description: "UNDERPANTS Sz.M",
+      amount: 1200,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400039",
+      warehouseID: "1114",
+      description: "UNDERPANTS Sz.L",
+      amount: 1080,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400040",
+      warehouseID: "1114",
+      description: "UNDERPANTS Sz.XL",
+      amount: 1680,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400041",
+      warehouseID: "1114",
+      description: "UNDERPANTS Sz.XXL",
+      amount: 420,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400042",
+      warehouseID: "1114",
+      description: "UNDERPANTS Sz.XXXL",
+      amount: 420,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400067",
+      warehouseID: "1114",
+      description: "CASUAL T-SHIRT Sz.XXXL",
+      amount: 1080,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400068",
+      warehouseID: "1114",
+      description: "CASUAL T-SHIRT Sz.XXL",
+      amount: 1200,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400069",
+      warehouseID: "1114",
+      description: "CASUAL T-SHIRT Sz.XL",
+      amount: 1200,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400070",
+      warehouseID: "1114",
+      description: "CASUAL T-SHIRT Sz.L",
+      amount: 1200,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400071",
+      warehouseID: "1114",
+      description: "CASUAL T-SHIRT Sz.M",
+      amount: 2400,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400072",
+      warehouseID: "1114",
+      description: "CASUAL T-SHIRT Sz.S",
+      amount: 1800,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400073",
+      warehouseID: "1114",
+      description: "CASUAL SHORTS Sz.XXXL",
+      amount: 1080,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400074",
+      warehouseID: "1114",
+      description: "CASUAL SHORTS Sz.XXL",
+      amount: 1200,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400075",
+      warehouseID: "1114",
+      description: "CASUAL SHORTS Sz.XL",
+      amount: 1200,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400076",
+      warehouseID: "1114",
+      description: "CASUAL SHORTS Sz.L",
+      amount: 1200,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400077",
+      warehouseID: "1114",
+      description: "CASUAL SHORTS Sz.M",
+      amount: 2400,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400078",
+      warehouseID: "1114",
+      description: "CASUAL SHORTS Sz.S",
+      amount: 1800,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400079",
+      warehouseID: "1114",
+      description: "TOWEL BIG",
+      amount: 1380,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400080",
+      warehouseID: "1114",
+      description: "TOWEL SMALL",
+      amount: 1308,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111400081",
+      warehouseID: "1114",
+      description: "BLANKET",
+      amount: 420,
+      unit: "Pcs",
+    },
+    {
+      accountNo: "111500001",
+      warehouseID: "1115",
+      description: "RICE",
+      amount: 0,
+      unit: "sak",
+    },
+    {
+      accountNo: "111500002",
+      warehouseID: "1115",
+      description: "FLOUR",
+      amount: 0,
+      unit: "sak",
+    },
+    {
+      accountNo: "111500003",
+      warehouseID: "1115",
+      description: "EGG",
+      amount: 0,
+      unit: "rak",
+    },
+    {
+      accountNo: "111500004",
+      warehouseID: "1115",
+      description: "WHITE SUGAR",
+      amount: 0,
+      unit: "karung",
+    },
+    {
+      accountNo: "111500005",
+      warehouseID: "1115",
+      description: "BROWN SUGAR",
+      amount: 0,
+      unit: "kg",
+    },
+    {
+      accountNo: "111500006",
+      warehouseID: "1115",
+      description: "BUTTER",
+      amount: 0,
+      unit: "karton",
+    },
+    {
+      accountNo: "111500007",
+      warehouseID: "1115",
+      description: "MILK",
+      amount: 0,
+      unit: "karton",
+    },
+    {
+      accountNo: "111500008",
+      warehouseID: "1115",
+      description: "CHOCOLATE MILK",
+      amount: 0,
+      unit: "karton",
+    },
+    {
+      accountNo: "111500009",
+      warehouseID: "1115",
+      description: "LOW-FAT MILK",
+      amount: 0,
+      unit: "karton",
+    },
+    {
+      accountNo: "111500010",
+      warehouseID: "1115",
+      description: "CHOCOLATE BAR",
+      amount: 0,
+      unit: "karton",
+    },
+    {
+      accountNo: "111500011",
+      warehouseID: "1115",
+      description: "COOKING OIL",
+      amount: 0,
+      unit: "gen",
+    },
+    {
+      accountNo: "111500012",
+      warehouseID: "1115",
+      description: "VANILLA POWDER",
+      amount: 0,
+      unit: "pack",
+    },
+    {
+      accountNo: "111500013",
+      warehouseID: "1115",
+      description: "PENNE",
+      amount: 0,
+      unit: "liter",
+    },
+    {
+      accountNo: "111500014",
+      warehouseID: "1115",
+      description: "PINEAPPLE JAM",
+      amount: 0,
+      unit: "karton",
+    },
+    {
+      accountNo: "111500015",
+      warehouseID: "1115",
+      description: "CHEDDAR CHEESE",
+      amount: 0,
+      unit: "karton",
+    },
+    {
+      accountNo: "111500016",
+      warehouseID: "1115",
+      description: "SYRUP",
+      amount: 0,
+      unit: "karton",
+    },
+    {
+      accountNo: "111500017",
+      warehouseID: "1115",
+      description: "CHOCOLATE SPRINKLES",
+      amount: 0,
+      unit: "karton",
+    },
+    {
+      accountNo: "111500018",
+      warehouseID: "1115",
+      description: "CHILI POWDER",
+      amount: 0,
+      unit: "pack",
+    },
+    {
+      accountNo: "111500019",
+      warehouseID: "1115",
+      description: "MACARONI",
+      amount: 0,
+      unit: "botol",
+    },
+    {
+      accountNo: "111500020",
+      warehouseID: "1115",
+      description: "SOYBEAN",
+      amount: 0,
+      unit: "kg",
+    },
+    {
+      accountNo: "111500021",
+      warehouseID: "1115",
+      description: "SPRITE 390ML",
+      amount: 0,
+      unit: "karton",
+    },
+    {
+      accountNo: "111500022",
+      warehouseID: "1115",
+      description: "TUMERIC",
+      amount: 0,
+      unit: "kg",
+    },
+    {
+      accountNo: "111500023",
+      warehouseID: "1115",
+      description: "SOY SAUCE",
+      amount: 0,
+      unit: "karton",
+    },
+    {
+      accountNo: "111500024",
+      warehouseID: "1115",
+      description: "CRACKERS",
+      amount: 0,
+      unit: "karton",
+    },
+    {
+      accountNo: "111500025",
+      warehouseID: "1115",
+      description: "PEPPER",
+      amount: 0,
+      unit: "karton",
+    },
+    {
+      accountNo: "111500026",
+      warehouseID: "1115",
+      description: "BUCKWHEAT NOODLES",
+      amount: 0,
+      unit: "karton",
+    },
+    {
+      accountNo: "111500027",
+      warehouseID: "1115",
+      description: "BAKING SODA",
+      amount: 0,
+      unit: "pack",
+    },
+    {
+      accountNo: "111500028",
+      warehouseID: "1115",
+      description: "SALT",
+      amount: 0,
+      unit: "karton",
+    },
+    {
+      accountNo: "111500029",
+      warehouseID: "1115",
+      description: "SEAWEED",
+      amount: 0,
+      unit: "karton",
+    },
+    {
+      accountNo: "111500030",
+      warehouseID: "1115",
+      description: "COCONUT MILK",
+      amount: 0,
+      unit: "karton",
+    },
+    {
+      accountNo: "111500031",
+      warehouseID: "1115",
+      description: "CHILI SAUCE",
+      amount: 0,
+      unit: "gen",
+    },
+    {
+      accountNo: "111500032",
+      warehouseID: "1115",
+      description: "KETCHUP",
+      amount: 0,
+      unit: "gen",
+    },
+    {
+      accountNo: "111500033",
+      warehouseID: "1115",
+      description: "OYSTER SAUCE",
+      amount: 0,
+      unit: "kaleng",
+    },
+    {
+      accountNo: "111500034",
+      warehouseID: "1115",
+      description: "WORCHESTERSHIRE SAUCE",
+      amount: 0,
+      unit: "botol",
+    },
+    {
+      accountNo: "111500035",
+      warehouseID: "1115",
+      description: "BLACK TEA",
+      amount: 0,
+      unit: "karton",
+    },
+    {
+      accountNo: "111500036",
+      warehouseID: "1115",
+      description: "BOTTLED WATER",
+      amount: 0,
+      unit: "karton",
+    },
+    {
+      accountNo: "111500037",
+      warehouseID: "1115",
+      description: "PAPER CUP",
+      amount: 0,
+      unit: "karton",
+    },
+    {
+      accountNo: "111500038",
+      warehouseID: "1115",
+      description: "PLASTIC SPOON",
+      amount: 0,
+      unit: "pack",
+    },
+    {
+      accountNo: "111500039",
+      warehouseID: "1115",
+      description: "SNACK BOX",
+      amount: 0,
+      unit: "pack",
+    },
+    {
+      accountNo: "111500040",
+      warehouseID: "1115",
+      description: "RICE BOX",
+      amount: 0,
+      unit: "pack",
+    },
 ];
 
 const mutationData = [
 	{
-		"mutationID" : 1,
+		"mutationID" : "1",
 		"accountNo" : "111400001",
 		"description" : "BOXER L CHILD",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1307,7 +713,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 2,
+		"mutationID" : "2",
 		"accountNo" : "111400002",
 		"description" : "BOXER XL CHILD",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1324,7 +730,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 3,
+		"mutationID" : "3",
 		"accountNo" : "111400003",
 		"description" : "BOXER M TEEN",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1341,7 +747,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 4,
+		"mutationID" : "4",
 		"accountNo" : "111400004",
 		"description" : "BOXER L TEEN",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1358,7 +764,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 5,
+		"mutationID" : "5",
 		"accountNo" : "111400005",
 		"description" : "BOXER XL ADULT",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1375,7 +781,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 6,
+		"mutationID" : "6",
 		"accountNo" : "111400006",
 		"description" : "BOXER XXL ADULT",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1392,7 +798,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 7,
+		"mutationID" : "7",
 		"accountNo" : "111400007",
 		"description" : "BOXER XXXL ADULT",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1409,7 +815,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 8,
+		"mutationID" : "8",
 		"accountNo" : "111400008",
 		"description" : "UNDERSHIRT M CHILD",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1426,7 +832,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 9,
+		"mutationID" : "9",
 		"accountNo" : "111400009",
 		"description" : "UNDERSHIRT L CHILD",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1443,7 +849,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 10,
+		"mutationID" : "10",
 		"accountNo" : "111400010",
 		"description" : "UNDERSHIRT L TEEN",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1460,7 +866,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 11,
+		"mutationID" : "11",
 		"accountNo" : "111400011",
 		"description" : "UNDERSHIRT XL ADULT",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1477,7 +883,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 12,
+		"mutationID" : "12",
 		"accountNo" : "111400012",
 		"description" : "UNDERSHIRT XXL ADULT",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1494,7 +900,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 13,
+		"mutationID" : "13",
 		"accountNo" : "111400013",
 		"description" : "UNDERSHIRT XXXL ADULT",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1511,7 +917,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 14,
+		"mutationID" : "14",
 		"accountNo" : "111400014",
 		"description" : "FORMAL SHIRT CHILD No.10",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1528,7 +934,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 15,
+		"mutationID" : "15",
 		"accountNo" : "111400015",
 		"description" : "FORMAL SHIRT CHILD No.11",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1545,7 +951,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 16,
+		"mutationID" : "16",
 		"accountNo" : "111400016",
 		"description" : "FORMAL SHIRT CHILD No.12",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1562,7 +968,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 17,
+		"mutationID" : "17",
 		"accountNo" : "111400017",
 		"description" : "FORMAL SHIRT CHILD No.13",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1579,7 +985,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 18,
+		"mutationID" : "18",
 		"accountNo" : "111400018",
 		"description" : "FORMAL SHIRT CHILD No.14",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1596,7 +1002,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 19,
+		"mutationID" : "19",
 		"accountNo" : "111400019",
 		"description" : "FORMAL SHIRT CHILD No.15",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1613,7 +1019,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 20,
+		"mutationID" : "20",
 		"accountNo" : "111400020",
 		"description" : "FORMAL SHIRT TEEN Sz.M",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1630,7 +1036,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 21,
+		"mutationID" : "21",
 		"accountNo" : "111400021",
 		"description" : "FORMAL SHIRT ADULT Sz.L",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1647,7 +1053,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 22,
+		"mutationID" : "22",
 		"accountNo" : "111400022",
 		"description" : "FORMAL SHIRT ADULT Sz.XL",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1664,7 +1070,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 23,
+		"mutationID" : "23",
 		"accountNo" : "111400023",
 		"description" : "PANTS ADULT No.33",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1681,7 +1087,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 24,
+		"mutationID" : "24",
 		"accountNo" : "111400024",
 		"description" : "PANTS ADULT No.34",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1698,7 +1104,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 25,
+		"mutationID" : "25",
 		"accountNo" : "111400025",
 		"description" : "PANTS ADULT No.35",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1715,7 +1121,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 26,
+		"mutationID" : "26",
 		"accountNo" : "111400026",
 		"description" : "PANTS ADULT No.36",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1732,7 +1138,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 27,
+		"mutationID" : "27",
 		"accountNo" : "111400027",
 		"description" : "PANTS ADULT No.37",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1749,7 +1155,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 28,
+		"mutationID" : "28",
 		"accountNo" : "111400028",
 		"description" : "PANTS ADULT No.38",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1766,7 +1172,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 29,
+		"mutationID" : "29",
 		"accountNo" : "111400029",
 		"description" : "PANTS ADULT No.39",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1783,7 +1189,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 30,
+		"mutationID" : "30",
 		"accountNo" : "111400030",
 		"description" : "PANTS ADULT No.40",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1800,7 +1206,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 31,
+		"mutationID" : "31",
 		"accountNo" : "111400031",
 		"description" : "PANTS CHILD No.10",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1817,7 +1223,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 32,
+		"mutationID" : "32",
 		"accountNo" : "111400032",
 		"description" : "PANTS CHILD No.11",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1834,7 +1240,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 33,
+		"mutationID" : "33",
 		"accountNo" : "111400033",
 		"description" : "PANTS CHILD No.12",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1851,7 +1257,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 34,
+		"mutationID" : "34",
 		"accountNo" : "111400034",
 		"description" : "PANTS TEEN No.13",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1868,7 +1274,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 35,
+		"mutationID" : "35",
 		"accountNo" : "111400035",
 		"description" : "PANTS TEEN No.14",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1885,7 +1291,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 36,
+		"mutationID" : "36",
 		"accountNo" : "111400036",
 		"description" : "PANTS TEEN No.15",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1902,7 +1308,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 37,
+		"mutationID" : "37",
 		"accountNo" : "111400037",
 		"description" : "UNDERPANTS Sz.S",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1919,7 +1325,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 38,
+		"mutationID" : "38",
 		"accountNo" : "111400038",
 		"description" : "UNDERPANTS Sz.M",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1936,7 +1342,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 39,
+		"mutationID" : "39",
 		"accountNo" : "111400039",
 		"description" : "UNDERPANTS Sz.L",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1953,7 +1359,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 40,
+		"mutationID" : "40",
 		"accountNo" : "111400040",
 		"description" : "UNDERPANTS Sz.XL",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1970,7 +1376,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 41,
+		"mutationID" : "41",
 		"accountNo" : "111400041",
 		"description" : "UNDERPANTS Sz.XXL",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -1987,7 +1393,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 42,
+		"mutationID" : "42",
 		"accountNo" : "111400042",
 		"description" : "UNDERPANTS Sz.XXXL",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2004,7 +1410,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 43,
+		"mutationID" : "43",
 		"accountNo" : "111400067",
 		"description" : "CASUAL T-SHIRT Sz.XXXL",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2021,7 +1427,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 44,
+		"mutationID" : "44",
 		"accountNo" : "111400068",
 		"description" : "CASUAL T-SHIRT Sz.XXL",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2038,7 +1444,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 45,
+		"mutationID" : "45",
 		"accountNo" : "111400069",
 		"description" : "CASUAL T-SHIRT Sz.XL",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2055,7 +1461,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 46,
+		"mutationID" : "46",
 		"accountNo" : "111400070",
 		"description" : "CASUAL T-SHIRT Sz.L",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2072,7 +1478,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 47,
+		"mutationID" : "47",
 		"accountNo" : "111400071",
 		"description" : "CASUAL T-SHIRT Sz.M",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2089,7 +1495,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 48,
+		"mutationID" : "48",
 		"accountNo" : "111400072",
 		"description" : "CASUAL T-SHIRT Sz.S",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2106,7 +1512,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 49,
+		"mutationID" : "49",
 		"accountNo" : "111400073",
 		"description" : "CASUAL SHORTS Sz.XXXL",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2123,7 +1529,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 50,
+		"mutationID" : "50",
 		"accountNo" : "111400074",
 		"description" : "CASUAL SHORTS Sz.XXL",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2140,7 +1546,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 51,
+		"mutationID" : "51",
 		"accountNo" : "111400075",
 		"description" : "CASUAL SHORTS Sz.XL",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2157,7 +1563,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 52,
+		"mutationID" : "52",
 		"accountNo" : "111400076",
 		"description" : "CASUAL SHORTS Sz.L",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2174,7 +1580,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 53,
+		"mutationID" : "53",
 		"accountNo" : "111400077",
 		"description" : "CASUAL SHORTS Sz.M",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2191,7 +1597,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 54,
+		"mutationID" : "54",
 		"accountNo" : "111400078",
 		"description" : "CASUAL SHORTS Sz.S",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2208,7 +1614,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 55,
+		"mutationID" : "55",
 		"accountNo" : "111400079",
 		"description" : "TOWEL BIG",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2225,7 +1631,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 56,
+		"mutationID" : "56",
 		"accountNo" : "111400080",
 		"description" : "TOWEL SMALL",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2242,7 +1648,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 57,
+		"mutationID" : "57",
 		"accountNo" : "111400081",
 		"description" : "BLANKET",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2259,7 +1665,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 58,
+		"mutationID" : "58",
 		"accountNo" : "111500001",
 		"description" : "RICE",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2276,7 +1682,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 59,
+		"mutationID" : "59",
 		"accountNo" : "111500002",
 		"description" : "FLOUR",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2293,7 +1699,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 60,
+		"mutationID" : "60",
 		"accountNo" : "111500003",
 		"description" : "EGG",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2310,7 +1716,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 61,
+		"mutationID" : "61",
 		"accountNo" : "111500004",
 		"description" : "WHITE SUGAR",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2327,7 +1733,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 62,
+		"mutationID" : "62",
 		"accountNo" : "111500005",
 		"description" : "BROWN SUGAR",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2344,7 +1750,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 63,
+		"mutationID" : "63",
 		"accountNo" : "111500006",
 		"description" : "BUTTER",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2361,7 +1767,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 64,
+		"mutationID" : "64",
 		"accountNo" : "111500007",
 		"description" : "MILK",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2378,7 +1784,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 65,
+		"mutationID" : "65",
 		"accountNo" : "111500008",
 		"description" : "CHOCOLATE MILK",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2395,7 +1801,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 66,
+		"mutationID" : "66",
 		"accountNo" : "111500009",
 		"description" : "LOW-FAT MILK",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2412,7 +1818,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 67,
+		"mutationID" : "67",
 		"accountNo" : "111500010",
 		"description" : "CHOCOLATE BAR",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2429,7 +1835,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 68,
+		"mutationID" : "68",
 		"accountNo" : "111500011",
 		"description" : "COOKING OIL",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2446,7 +1852,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 69,
+		"mutationID" : "69",
 		"accountNo" : "111500012",
 		"description" : "VANILLA POWDER",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2463,7 +1869,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 70,
+		"mutationID" : "70",
 		"accountNo" : "111500013",
 		"description" : "PENNE",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2480,7 +1886,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 71,
+		"mutationID" : "71",
 		"accountNo" : "111500014",
 		"description" : "PINEAPPLE JAM",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2497,7 +1903,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 72,
+		"mutationID" : "72",
 		"accountNo" : "111500015",
 		"description" : "CHEDDAR CHEESE",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2514,7 +1920,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 73,
+		"mutationID" : "73",
 		"accountNo" : "111500016",
 		"description" : "SYRUP",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2531,7 +1937,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 74,
+		"mutationID" : "74",
 		"accountNo" : "111500017",
 		"description" : "CHOCOLATE SPRINKLES",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2548,7 +1954,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 75,
+		"mutationID" : "75",
 		"accountNo" : "111500018",
 		"description" : "CHILI POWDER",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2565,7 +1971,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 76,
+		"mutationID" : "76",
 		"accountNo" : "111500019",
 		"description" : "MACARONI",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2582,7 +1988,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 77,
+		"mutationID" : "77",
 		"accountNo" : "111500020",
 		"description" : "SOYBEAN",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2599,7 +2005,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 78,
+		"mutationID" : "78",
 		"accountNo" : "111500021",
 		"description" : "SPRITE 390ML",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2616,7 +2022,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 79,
+		"mutationID" : "79",
 		"accountNo" : "111500022",
 		"description" : "TUMERIC",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2633,7 +2039,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 80,
+		"mutationID" : "80",
 		"accountNo" : "111500023",
 		"description" : "SOY SAUCE",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2650,7 +2056,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 81,
+		"mutationID" : "81",
 		"accountNo" : "111500024",
 		"description" : "CRACKERS",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2667,7 +2073,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 82,
+		"mutationID" : "82",
 		"accountNo" : "111500025",
 		"description" : "PEPPER",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2684,7 +2090,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 83,
+		"mutationID" : "83",
 		"accountNo" : "111500026",
 		"description" : "BUCKWHEAT NOODLES",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2701,7 +2107,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 84,
+		"mutationID" : "84",
 		"accountNo" : "111500027",
 		"description" : "BAKING SODA",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2718,7 +2124,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 85,
+		"mutationID" : "85",
 		"accountNo" : "111500028",
 		"description" : "SALT",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2735,7 +2141,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 86,
+		"mutationID" : "86",
 		"accountNo" : "111500029",
 		"description" : "SEAWEED",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2752,7 +2158,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 87,
+		"mutationID" : "87",
 		"accountNo" : "111500030",
 		"description" : "COCONUT MILK",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2769,7 +2175,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 88,
+		"mutationID" : "88",
 		"accountNo" : "111500031",
 		"description" : "CHILI SAUCE",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2786,7 +2192,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 89,
+		"mutationID" : "89",
 		"accountNo" : "111500032",
 		"description" : "KETCHUP",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2803,7 +2209,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 90,
+		"mutationID" : "90",
 		"accountNo" : "111500033",
 		"description" : "OYSTER SAUCE",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2820,7 +2226,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 91,
+		"mutationID" : "91",
 		"accountNo" : "111500034",
 		"description" : "WORCHESTERSHIRE SAUCE",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2837,7 +2243,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 92,
+		"mutationID" : "92",
 		"accountNo" : "111500035",
 		"description" : "BLACK TEA",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2854,7 +2260,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 93,
+		"mutationID" : "93",
 		"accountNo" : "111500036",
 		"description" : "BOTTLED WATER",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2871,7 +2277,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 94,
+		"mutationID" : "94",
 		"accountNo" : "111500037",
 		"description" : "PAPER CUP",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2888,7 +2294,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 95,
+		"mutationID" : "95",
 		"accountNo" : "111500038",
 		"description" : "PLASTIC SPOON",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2905,7 +2311,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 96,
+		"mutationID" : "96",
 		"accountNo" : "111500039",
 		"description" : "SNACK BOX",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2922,7 +2328,7 @@ const mutationData = [
 		"active" : "A"
 	},
 	{
-		"mutationID" : 97,
+		"mutationID" : "97",
 		"accountNo" : "111500040",
 		"description" : "RICE BOX",
 		"mutationDate" : "2024-12-12 00:30:08",
@@ -2940,88 +2346,61 @@ const mutationData = [
 	}
 ];
 
-const counter = [
-  {
-    counterName: "warehouses",
-    count: 2,
-  },
-  {
-    counterName: "items",
-    count: 97,
-  },
-  {
-    counterName: "mutations",
-    count: 97,
-  },
-];
-
 const ImportData = () => {
   const importData = async () => {
-    // try {
-    //   for (const item of warehouseData) {
-    //     const docRef = doc(db, "warehouses", item.warehouseID.toString());
-    //     const docSnapshot = await getDoc(docRef);
-    //     if (!docSnapshot.exists()) {
-    //       await setDoc(docRef, item);
-    //       console.log(`Added: ${item.name}`);
-    //     } else {
-    //       console.log(`Skipped: ${item.name} (already exists)`);
-    //     }
-    //   }
-    //   console.log("Data import completed");
-    // } catch (error) {
-    //   console.error("Error importing data:", error);
-    // }
-    // try {
-    //   for (const item of itemData) {
-    //     const docRef = doc(db, "items", item.itemID.toString());
-    //     const docSnapshot = await getDoc(docRef);
-    //     if (!docSnapshot.exists()) {
-    //       await setDoc(docRef, item);
-    //       console.log(`Added: ${item.description}`);
-    //     } else {
-    //       console.log(`Skipped: ${item.description} (already exists)`);
-    //     }
-    //   }
-    //   console.log("Data import completed");
-    // } catch (error) {
-    //   console.error("Error importing data:", error);
-    // }
-    // try {
-    //   for (const item of mutationData) {
-    //     const docRef = doc(db, "mutations", item.mutationID.toString());
-    //     const docSnapshot = await getDoc(docRef);
-    //     if (!docSnapshot.exists()) {
-    //       await setDoc(docRef, item);
-    //       await updateDoc(docRef, {
-    //         mutationDate: Timestamp.fromDate(new Date( item.mutationDate))
-    //       });
-    //       console.log(`Added: ${item.mutationID}`);
-    //     } else {
-    //       await updateDoc(docRef, {
-    //         mutationDate: Timestamp.fromDate(new Date(item.mutationDate)),
-    //       });
-    //       console.log(`Skipped: ${item.mutationID} (already exists)`);
-    //     }
-    //   }
-    //   console.log("Data import completed");
-    // } catch (error) {
-    //   console.error("Error importing data:", error);
-    // }
-
     try {
-      for (const item of counter) {
-        const docRef = doc(db, "counter", item.counterName.toString());
+      for (const item of warehouseData) {
+        const docRef = doc(db, "warehouses", item.warehouseID);
         const docSnapshot = await getDoc(docRef);
         if (!docSnapshot.exists()) {
           await setDoc(docRef, item);
-          console.log(`Added: ${item.counterName}`);
+          console.log(`Added: ${item.name}`);
         } else {
-          console.log(`Skipped: ${item.counterName} (already exists)`);
+          console.log(`Skipped: ${item.name} (already exists)`);
         }
       }
       console.log("Data import completed");
+    } catch (error) {
+      console.error("Error importing data:", error);
+    }
 
+
+    try {
+      for (const item of itemData) {
+        const docRef = doc(db, "items", item.accountNo.toString());
+        const docSnapshot = await getDoc(docRef);
+        if (!docSnapshot.exists()) {
+          await setDoc(docRef, item);
+          console.log(`Added: ${item.description}`);
+        } else {
+          console.log(`Skipped: ${item.description} (already exists)`);
+        }
+      }
+      console.log("Data import completed");
+    } catch (error) {
+      console.error("Error importing data:", error);
+    }
+
+
+    try {
+      for (const item of mutationData) {
+		item.mutationID = crypto.randomUUID();
+        const docRef = doc(db, "mutations", item.mutationID.toString());
+        const docSnapshot = await getDoc(docRef);
+        if (!docSnapshot.exists()) {
+          await setDoc(docRef, item);
+          await updateDoc(docRef, {
+            mutationDate: Timestamp.fromDate(new Date( item.mutationDate))
+          });
+          console.log(`Added: ${item.mutationID}`);
+        } else {
+          await updateDoc(docRef, {
+            mutationDate: Timestamp.fromDate(new Date(item.mutationDate)),
+          });
+          console.log(`Skipped: ${item.mutationID} (already exists)`);
+        }
+      }
+      console.log("Data import completed");
     } catch (error) {
       console.error("Error importing data:", error);
     }

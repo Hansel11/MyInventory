@@ -21,7 +21,7 @@ const initForm: FormValues = {
 };
 
 interface WarehouseProps {
-  setWarehouse: Dispatch<SetStateAction<number>>;
+  setWarehouseID: Dispatch<SetStateAction<string>>;
 }
 
 export default function Warehouse(props: WarehouseProps) {
@@ -73,33 +73,12 @@ export default function Warehouse(props: WarehouseProps) {
   };
 
   useEffect(() => {
-
-
     setIsLoading(true);
     fetchWarehouse();
-    // fetch(url + "/gudang", {
-    //   headers: {
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     const gudang = data.map((item: any) => ({
-    //       ...item,
-    //       id: item.gudangID,
-    //     }));
-    //     setRows(gudang);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error:", error);
-    //   })
-    //   .finally(() => {
-    //     setIsLoading(false);
-    //   });
   }, []);
 
   const viewData = (warehouse: GridRowParams) => {
-    props.setWarehouse(Number(warehouse.id));
+    props.setWarehouseID(String(warehouse.id));
     navigate("/item");
   }
 

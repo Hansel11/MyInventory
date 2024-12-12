@@ -90,8 +90,7 @@ const Dashboard:React.FC = () => {
 
   const [open, setOpen] = useState(true);
   const [warehouseList, setWarehouseList] = useState<any[]>([]);
-  const [warehouse, setWarehouse] = useState(0);
-  const [warehouseCode, setWarehouseCode] = useState("");
+  const [warehouseID, setWarehouseID] = useState("");
   
 
   const fetchWarehouse = async () => {
@@ -103,8 +102,7 @@ const Dashboard:React.FC = () => {
         ...doc.data(),
       }));
       setWarehouseList(warehouseData);
-      setWarehouseCode(warehouseData[0].warehouseCode);
-      setWarehouse(warehouseData[0].warehouseID);
+      setWarehouseID(warehouseData[0].warehouseID);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -278,11 +276,10 @@ const Dashboard:React.FC = () => {
                     role == "Staff warehouse" ||
                     role == "Staff Purchasing" ? (
                       <Items
-                        warehouse={warehouse}
-                        setWarehouse={setWarehouse}
+                        warehouseID={warehouseID}
+                        setWarehouseID={setWarehouseID}
                         warehouseList={warehouseList}
                         // setWarehouseList={setWarehouseList}
-                        warehouseCode={warehouseCode}
                       />
                     ) : (
                       <Unauthorized />
@@ -301,8 +298,8 @@ const Dashboard:React.FC = () => {
                     role == "Staff warehouse" ||
                     role == "Staff Purchasing" ? (
                       <Mutations
-                        warehouse={warehouse}
-                        setWarehouse={setWarehouse}
+                        warehouse={warehouseID}
+                        setWarehouse={setWarehouseID}
                         warehouseList={warehouseList}
                         setWarehouseList={setWarehouseList}
                       />
@@ -321,7 +318,7 @@ const Dashboard:React.FC = () => {
                   user ? (
                     role == "Admin" ? (
                       <Warehouse 
-                      setWarehouse={setWarehouse}
+                      setWarehouseID={setWarehouseID}
                       />
                     ) : (
                       <Unauthorized />

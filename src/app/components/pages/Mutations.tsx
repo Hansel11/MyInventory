@@ -45,8 +45,8 @@ const initForm: FormValues = {
 };
 
 interface MutationProps {
-  warehouse: number;
-  setWarehouse: Dispatch<SetStateAction<number>>;
+  warehouse: string;
+  setWarehouse: Dispatch<SetStateAction<string>>;
   warehouseList: any[];
   setWarehouseList: Dispatch<SetStateAction<any[]>>;
 }

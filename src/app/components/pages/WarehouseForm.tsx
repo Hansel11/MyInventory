@@ -39,6 +39,7 @@ export default function WarehouseForm({ open, handleClose, handleConfirm, type, 
 
   const sendUpdateData = async (data: FormValues) => {
     setIsLoading(true);
+    
 
     await fetch(url + "/gudang?userID=" + userID, {
       method: "POST",
