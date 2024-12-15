@@ -1,5 +1,5 @@
 
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import { Link } from "react-router-dom";
 import CustomHeaderBox from '../utils/CustomHeaderBox';
 
@@ -15,19 +15,35 @@ export default function About() {
           {/* <ImportData></ImportData> */}
           {/* UNCOMMENT THIS TO ALLOW INITIAL SEEDING FOR FIREBASE */}
 
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+          ></link>
+
           <Box>
             This web Application is created using React and Firebase.
             <br />
             Feel free to use and modify this code to suit your needs.
             <br />
-            If you find this repository helpful, please give it a star.🌟
+            If you find this{" "}
+            <a
+              href="https://github.com/Hansel11/MyInventory"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              repository
+            </a>{" "}
+            helpful, please give it a star.🌟
             <br />
             You can contact me over on:
             <br />
-            <link
-              rel="stylesheet"
-              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-            ></link>
+            {/* <Typography sx={{ fontSize: 16 }}>
+              <i
+                className="fa-solid fa-envelope"
+                style={{ marginRight: 16 }}
+              ></i>
+              hansel.sentosa2@gmail.com
+            </Typography> */}
             <Link
               to="#"
               onClick={(e) => {
@@ -73,9 +89,9 @@ export default function About() {
             </Link>
           </Box>
 
-          <Typography variant="body2" color="text.secondary" sx={{ pt: 2 }}>
+          {/* <Typography variant="body2" color="text.secondary" sx={{ pt: 2 }}>
             {"© 2024"}
-          </Typography>
+          </Typography> */}
         </>
       }
     />

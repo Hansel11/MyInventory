@@ -26,15 +26,13 @@ import Unauthorized from './components/others/Unauthorized';
 import About from './components/pages/About';
 import Items from './components/pages/Items';
 import Mutations from './components/pages/Mutations';
-// import Users from './components/pages/Users';
 import Warehouse from './components/pages/Warehouse';
 import ThemeSwitch from './components/utils/ThemeSwitch';
-// import useAuth from './components/utils/useAuth';
 import useThemeMode from './components/utils/useThemeMode';
 
 import { collection, getDocs } from "firebase/firestore";
 import { auth, db } from './components/utils/FirebaseConfig';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { onAuthStateChanged, User } from 'firebase/auth';
 
 // import Profile from './components/auth/Profile';
 
@@ -86,11 +84,13 @@ const Dashboard:React.FC = () => {
   //////////////////////////////////////
 
   const role = "Admin";
-  const [ user ] = useAuthState(auth);
+  const [user, setUser] = useState<User | null>(null);
+  // const [ user ] = useAuthState(auth);
 
   const [open, setOpen] = useState(true);
   const [warehouseList, setWarehouseList] = useState<any[]>([]);
   const [warehouseID, setWarehouseID] = useState("");
+  const [verifying, setVerifying] = useState(true);
   
 
   const fetchWarehouse = async () => {
@@ -108,30 +108,18 @@ const Dashboard:React.FC = () => {
     }
   };
 
-
   useEffect(() => {
+    setVerifying(true);
+
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setVerifying(false);
+    });
 
     fetchWarehouse();
+    return () => unsubscribe();
 
-    
-    // fetch(url + `/warehouse?warehouseID=${warehouseAccess}`, {
-    //   headers: {
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     const warehouses = data.map((item: any) => ({
-    //       ...item,
-    //       id: item.warehouseID,
-    //     }));
-    //     setWarehouseList(warehouses);
-    //     setWarehouseCode(warehouses[0].warehouseCode);
-    //     setWarehouse(warehouses[0].warehouseID);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error:", error);
-    //   });
+
   }, []);
 
   const toggleDrawer = () => {
@@ -347,7 +335,7 @@ const Dashboard:React.FC = () => {
               <Route
                 path="/login"
                 Component={() =>
-                  !user ? <Login /> : <Navigate to="/" replace />
+                  !user ? <Login verifying={verifying} /> : <Navigate to="/" replace />
                 }
               />
 

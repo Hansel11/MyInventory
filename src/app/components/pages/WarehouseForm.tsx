@@ -91,7 +91,7 @@ export default function WarehouseForm({ open, handleClose, handleConfirm, type, 
         <DialogContent>
           <Container maxWidth="xs">
             <Box>
-              <h1>{type} Gudang</h1>
+              <h1>{type} Warehouse</h1>
               <Box
                 component="form"
                 onSubmit={handleSubmit(formSubmit)}

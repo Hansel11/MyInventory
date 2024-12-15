@@ -13,10 +13,9 @@ import CustomDataGrid from "../utils/CustomDatagrid";
 
 import dayjs, { Dayjs } from "dayjs";
 import CustomHeaderBox from "../utils/CustomHeaderBox";
-import useAuth from "../utils/useAuth";
 import MutationForm from "./MutationForm";
 import { db } from "../utils/FirebaseConfig";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, query, Timestamp, where } from "firebase/firestore";
 
 type FormValues = {
   mutationID: number;
@@ -53,8 +52,6 @@ interface MutationProps {
 
 export default function Mutations(props: MutationProps) {
 
-    const url = import.meta.env.VITE_API_URL;
-    const {token} = useAuth();
     const [rows, setRows] = useState<GridRowsProp>([]);
     const [newRowID, setnewRowID] = useState(-1);
     const [columnVisibilityModel, setColumnVisibilityModel] = useState<GridColumnVisibilityModel>();
@@ -77,8 +74,6 @@ export default function Mutations(props: MutationProps) {
         const stateAccNo = location.state?.accountNo;
         setItemName(location.state?.itemName);
 
-        console.log(stateAccNo);
-
         const collectionRef = collection(db, "mutations");
         let q;
         if (!stateAccNo) q = query(
@@ -94,12 +89,12 @@ export default function Mutations(props: MutationProps) {
         );
 
         const snapshot = await getDocs(q);
-        const itemData = await snapshot.docs.map((doc: any) => ({
+        const mutData = await snapshot.docs.map((doc: any) => ({
           id: doc.id,
           ...doc.data(),
         }));
 
-        setRows(itemData);
+        setRows(mutData);
         if (stateAccNo != null) {
           setColumnVisibilityModel({
             accountNo: false,
@@ -127,33 +122,6 @@ export default function Mutations(props: MutationProps) {
       }
     }, [rows]);
 
-    const validateNoAcc = (row: Partial<any>) =>
-      new Promise<Partial<any>>( async (resolve, reject) => {
-
-        await fetch(url + `/barang?accountNo=${row.accountNo}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.length == 0) {
-              reject(
-                new Error(
-                  `Tidak ada barang dengan No Account tersebut!`
-                )
-              );
-            }
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-          })
-          .finally(() => {
-            setIsLoading(false);
-          });
-        resolve({ ...row });
-      });
-
       const addData = async () => {
         setFormData(initForm);
         setFormType("Add");
@@ -176,7 +144,9 @@ export default function Mutations(props: MutationProps) {
         headerName: "Date",
         width: 100,
         valueGetter: (params: GridValueGetterParams) => {
-          return params.row.mutationDate.toDate().toLocaleString("id-ID");
+          return params.row.mutationDate instanceof Timestamp
+            ? params.row.mutationDate.toDate().toLocaleString("id-ID")
+            : params.row.mutationDate.toLocaleString("id-ID");
         },
       },
       {
@@ -198,7 +168,9 @@ export default function Mutations(props: MutationProps) {
         type: "number",
         width: 80,
         valueGetter: (params: GridValueGetterParams) => {
-          return params.row.stockIn == null || params.row.stockIn == 0 ? "-" : params.row.stockIn;
+          return params.row.stockIn == null || params.row.stockIn == 0
+            ? "-"
+            : params.row.stockIn;
         },
       },
       {
@@ -207,7 +179,9 @@ export default function Mutations(props: MutationProps) {
         type: "number",
         width: 80,
         valueGetter: (params: GridValueGetterParams) => {
-          return params.row.stockOut == null || params.row.stockOut == 0 ? "-" : params.row.stockOut;
+          return params.row.stockOut == null || params.row.stockOut == 0
+            ? "-"
+            : params.row.stockOut;
         },
       },
       {
@@ -230,7 +204,9 @@ export default function Mutations(props: MutationProps) {
         setIsFormOpen(false);
       };
 
-      const handleConfirmForm = (newRow: any) => {
+      const handleConfirmForm = (newRow: any, newRowItem: string) => {
+        newRow.id = newRow.mutationID;
+        newRow.description = newRowItem;
         const existingRow = rows.find((row) => row.id === newRow.id);
 
         if (existingRow) {
@@ -291,7 +267,6 @@ export default function Mutations(props: MutationProps) {
         enableAdd={itemName != null}
         isLoading={isLoading}
         setIsLoading={setIsLoading}
-        extraValidation={validateNoAcc}
         addData={addData}
         viewData={() => null}
         isCellEditable={(params: any) => {

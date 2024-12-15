@@ -7,7 +7,8 @@ import TextField from "@mui/material/TextField";
 // import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import useAuth from "../utils/useAuth";
+import { doc, getDoc, setDoc, Timestamp, updateDoc } from "firebase/firestore";
+import { db } from "../utils/FirebaseConfig";
 
 type FormValues = {
   mutationID: number;
@@ -28,7 +29,7 @@ interface DialogProps {
   type: string;
   open: boolean;
   handleClose: () => void;
-  handleConfirm: (newRow: any) => void;
+  handleConfirm: (newRow: any, newRowItem: string) => void;
   formData: FormValues;
 }
 
@@ -36,37 +37,33 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
   const { register, handleSubmit, formState, reset, setValue, getValues } = useForm<FormValues>();
   const { errors } = formState;
   const [isLoading, setIsLoading] = useState(false);
-  const { userID, token } = useAuth();
 
-  const [ jumlah, setJumlah ] = useState(0);
+  const [ total, setTotal ] = useState(0);
 
-    useEffect(() => {
-      if (accountNo != null) {
-        fetch(url + `/barang?accountNo=${accountNo}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            setJumlah(data[0].jumlah);
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-          })
-          .finally(() => {
-            setIsLoading(false);
-          });
-      }
-    }, []);
+  const fetchTotal = async () => {
+    const itemRef = doc(db, "items", accountNo);
+    const itemSS = await getDoc(itemRef);
+    if(itemSS.exists()){
+      const item = itemSS.data();
+      setTotal(item.amount);
+    }   
+  }
 
-  const mutasiOpt = [
+  useEffect(() => {
+    try {
+      fetchTotal();
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  const mutationOpt = [
     { label: "stockIn", value: "stockIn" },
     { label: "stockOut", value: "stockOut" },
   ];
   const [mutationType, setmutationType] = useState("");
-
-  const url = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     if (mutationType === "stockIn") setValue("stockOut", 0);
@@ -77,8 +74,8 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
   useEffect(() => {
     reset(formData);
     if (accountNo != null) setValue("accountNo", accountNo);
-    if (jumlah != null) setValue("stockAvail", jumlah);
-  }, [formData, jumlah]);
+    if (total != null) setValue("stockAvail", total);
+  }, [formData, total]);
 
   const formSubmit = (data: FormValues) => {
     console.log(data);
@@ -88,43 +85,47 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
   const sendUpdateData = async (data: FormValues) => {
     setIsLoading(true);
 
-    await fetch(url + "/mutasi?userID=" + userID, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify([data]),
-    })
-      .then((response) => {
-        if (response.ok) {
-          setSnackbar({
-            children: "Data berhasil distockInkan!",
-            severity: "success",
-          });
-          return response.json();
-        } else {
-          return response.json().then((err) => {
-            setSnackbar({
-              children: err.detail ?? "Terjadi error tidak terduga",
-              severity: "error",
-            });
-            throw new Error(err);
-          });
-        }
-      })
-      .then((res) => {
-        res.id = res.mutasiID;
-        setJumlah(data.stockResult);
+    try {
+
+      const itemRef = doc(db, "items", data.accountNo);
+      const itemSS = (await getDoc(itemRef));
+
+      if (itemSS.exists())
+      {
+        const mutID = crypto.randomUUID();
+        const mutRef = doc(db, "mutations", mutID);
+        const item = itemSS.data();
+
+        await setDoc(mutRef, {
+          mutationID: mutID,
+          accountNo: data.accountNo,
+          description: item.description,
+          mutationDate: Timestamp.fromDate(new Date()),
+          mutationType: data.mutationType,
+          stockIn: data.stockIn,
+          stockOut: data.stockOut,
+          stockResult: data.stockResult,
+          mutationNo: data.mutationNo,
+          client: data.client,
+        });
+        
+        item.amount = data.stockResult;
+        await updateDoc(itemRef, item);
+
+        setSnackbar({
+          children: "Data successfully saved!",
+          severity: "success",
+        });
+        
+        setTotal(data.stockResult);
         reset();
-        handleConfirm(res);
-      })
-      .catch((error) => {
-        console.error("There was an error:", error);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+        handleConfirm(data, item.description);
+      }
+    } catch (error) {
+      console.error("Error inserting data:", error);
+    } finally {
+      setIsLoading(false);
+    }
 
     return data;
   };
@@ -138,9 +139,9 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
 
   function updateStok(value: any) {
     const modif = mutationType === "stockIn" ? 1 : -1;
-    const akhir = getValues("stockAvail") + Number(value) * modif;
+    const result = Number(getValues("stockAvail")) + Number(value) * modif;
     setValue(
-      "stockResult", akhir
+      "stockResult", result
     );
   }
 
@@ -171,7 +172,7 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
         <DialogContent>
           <Container maxWidth="xs">
             <Box>
-              <h1>{type} Mutasi</h1>
+              <h1>{type} Mutation</h1>
               <Box
                 component="form"
                 onSubmit={handleSubmit(formSubmit)}
@@ -197,7 +198,7 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
                 {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
                     format="YYYY/MM/DD"
-                    label="Tanggal Mutasi"
+                    label="Mutation Date"
                     slotProps={{
                       textField: {
                         fullWidth: true,
@@ -206,7 +207,7 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
                         error: !!errors.mutationDate,
                         helperText: errors.mutationDate?.message,
                         ...register("mutationDate", {
-                          required: "Tanggal Mutasi perlu diisi",
+                          required: "Mutation Date is required",
                         }),
                       },
                     }}
@@ -229,7 +230,7 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
                   error={!!errors.mutationType}
                   helperText={errors.mutationType?.message}
                 >
-                  {mutasiOpt.map(({ label, value }) => (
+                  {mutationOpt.map(({ label, value }) => (
                     <MenuItem key={label} value={value}>
                       {label}
                     </MenuItem>
@@ -252,7 +253,7 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
                     />
 
                     <TextField
-                      label="Stok tersedia"
+                      label="Available stock"
                       disabled
                       variant="outlined"
                       fullWidth
@@ -320,7 +321,7 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
                       type="number"
                       defaultValue=""
                       {...register("stockResult", {
-                        validate: (value) => value > 0 || "Nilai harus positif",
+                        validate: (value) => value > 0 || "Value must be positive",
                         required: "Stok result is required",
                       })}
                       error={!!errors.stockResult}
@@ -347,12 +348,9 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
                   type="submit"
                   fullWidth
                   variant="contained"
-                  onClick={() => {
-                    // console.log(formData);
-                  }}
                   sx={{ mt: 3, mb: 2 }}
                 >
-                  Simpan
+                  Save
                 </LoadingButton>
               </Box>
             </Box>

@@ -63,7 +63,6 @@ const CustomItem:React.FC<ItemProps> = (props) => {
 
 
 export default function MainListItems() {
-  // const { role } = useAuth();
   // TEMP VVVVVVV
   const role = "Admin";
   const [user] = useAuthState(auth);
@@ -118,7 +117,6 @@ export const bottomListItems = (
 export function AuthNavItems() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [popup, setPopup] = useState(false);
-  // const { username } = useAuth();
   const [ user ] = useAuthState(auth);
   const theme = useTheme();
 

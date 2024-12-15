@@ -67,7 +67,6 @@ function Items(props: ItemProps) {
       alert("Import berhasil!");
       window.location.reload();
 
-      // STILL WIP (MAKE ROWS UPDATE AFTER BULK INSERT)
       newRows.forEach(nr => nr.id = nr.warehouseID);
       setRows([...rows, ...newRows]);
     }
@@ -84,9 +83,7 @@ function Items(props: ItemProps) {
       } else {
         setRows([...rows, newRow]);
       }
-    
     }
-
     setIsFormOpen(false);
     setSortModel([]);
   };
