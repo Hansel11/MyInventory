@@ -5,12 +5,12 @@ import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import useAuth from "../utils/useAuth";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../utils/FirebaseConfig";
 
 type FormValues = {
   name: string;
-  code: string;
-  gudangID: number;
+  warehouseID: string;
 };
 
 interface DialogProps {
@@ -25,9 +25,6 @@ export default function WarehouseForm({ open, handleClose, handleConfirm, type, 
   const { register, handleSubmit, formState, reset } = useForm<FormValues>();
   const { errors } = formState;
   const [isLoading, setIsLoading] = useState(false);
-  const { userID, token } = useAuth();
-
-  const url = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     reset(formData);
@@ -39,45 +36,23 @@ export default function WarehouseForm({ open, handleClose, handleConfirm, type, 
 
   const sendUpdateData = async (data: FormValues) => {
     setIsLoading(true);
-    
 
-    await fetch(url + "/gudang?userID=" + userID, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => {
-        if (response.ok) {
-          setSnackbar({
-            children: "Data berhasil dimasukkan!",
-            severity: "success",
-          });
-          return response.json();
-        } else {
-          return response.json().then((err) => {
-            setSnackbar({
-              children: err.detail,
-              severity: "error",
-            });
-            console.error(`Error: ${err}`);
-          });
-        }
-      })
-      .then((res) => {
-        res.id = res.gudangID;
-        reset();
-        handleConfirm(res);
-      })
-      .catch((error) => {
-        console.error("There was an error:", error);
-        setSnackbar({ children: error.message, severity: "error" });
-      })
-      .finally(() => {
-        setIsLoading(false);
+    try {
+      const whRef = doc(db, "warehouses", data.warehouseID);
+      await setDoc(whRef, data);
+      
+      setSnackbar({
+        children: "Data successfully saved!",
+        severity: "success",
       });
+      reset();
+      handleConfirm(data);
+
+    } catch (error) {
+      console.error("Error importing data:", error);
+    } finally {
+      setIsLoading(false);
+    }
 
     return data;
   };
@@ -123,36 +98,34 @@ export default function WarehouseForm({ open, handleClose, handleConfirm, type, 
                 sx={{ mt: 1 }}
                 noValidate
               >
-                <input type="hidden" {...register("gudangID")} />
 
                 <TextField
-                  label="Nama Gudang"
+                  label="Code"
+                  variant="outlined"
+                  fullWidth
+                  margin="normal"
+                  type="string"
+                  disabled={type === "Edit"}
+                  {...register("warehouseID", {
+                    required: "Warehouse code is required",
+                    validate: (value) =>
+                      value.length == 4 || "Warehouse code must be 4 digit",
+                  })}
+                  error={!!errors.warehouseID}
+                  helperText={errors.warehouseID?.message}
+                />
+
+                <TextField
+                  label="Name"
                   variant="outlined"
                   fullWidth
                   margin="normal"
                   type="text"
                   {...register("name", {
-                    required: "Nama Gudang perlu diisi",
+                    required: "Warehouse name is required",
                   })}
                   error={!!errors.name}
                   helperText={errors.name?.message}
-                />
-
-                <TextField
-                  label="Kode Gudang"
-                  variant="outlined"
-                  fullWidth
-                  margin="normal"
-                  type="number"
-                  {...register("code", {
-                    required: "Jenis Barang perlu diisi",
-                    validate: (value) =>
-                      value.length == 4 ||
-                      "Kode gudang harus berupa angka 4 digit",
-                      
-                  })}
-                  error={!!errors.code}
-                  helperText={errors.code?.message}
                 />
 
                 <LoadingButton
@@ -162,7 +135,7 @@ export default function WarehouseForm({ open, handleClose, handleConfirm, type, 
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
                 >
-                  Simpan
+                  Save
                 </LoadingButton>
               </Box>
             </Box>

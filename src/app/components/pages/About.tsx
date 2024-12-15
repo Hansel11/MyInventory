@@ -17,12 +17,13 @@ export default function About() {
 
           <Box>
             This web Application is created using React and Firebase.
-            <br/>
-            Feel free to fork and modify this code to suit your needs. If you
-            find this repository helpful, please give it a star.🌟
-            <br/>
+            <br />
+            Feel free to use and modify this code to suit your needs.
+            <br />
+            If you find this repository helpful, please give it a star.🌟
+            <br />
             You can contact me over on:
-            <br/>
+            <br />
             <link
               rel="stylesheet"
               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -44,11 +45,9 @@ export default function About() {
             </Link>
             <br />
             <Link
-              to="#"
-              onClick={(e) => {
-                window.location.href = "https://linkedin.com/hansel-";
-                e.preventDefault();
-              }}
+              to="https://github.com/Hansel11"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <Button variant="contained" sx={{ marginTop: 2 }}>
                 <i
@@ -60,11 +59,9 @@ export default function About() {
             </Link>
             <br />
             <Link
-              to="#"
-              onClick={(e) => {
-                window.location.href = "https://linkedin.com/hansel-";
-                e.preventDefault();
-              }}
+              to="https://www.linkedin.com/in/hansel-/"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <Button variant="contained" sx={{ marginTop: 2 }}>
                 <i

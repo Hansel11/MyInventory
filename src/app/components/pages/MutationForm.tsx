@@ -163,8 +163,8 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
         sx={{
           "& .MuiPaper-root": {
             borderRadius: 6,
-            paddingBottom:3,
-            paddingRight:1
+            paddingBottom: 3,
+            paddingRight: 1,
           },
         }}
       >
@@ -215,13 +215,13 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
 
                 <TextField
                   select
-                  label="Jenis Mutasi"
+                  label="Mutation type"
                   variant="outlined"
                   fullWidth
                   margin="normal"
                   type="text"
                   {...register("mutationType", {
-                    required: "Jenis Mutasi perlu dipilih",
+                    required: "Mutation type is required",
                     onChange: (e) => {
                       setmutationType(e.target.value);
                     },
@@ -239,15 +239,13 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
                 {mutationType != "" && (
                   <>
                     <TextField
-                      label={`No. ${mutationType === "stockIn" ? "PO" : "FPB"}`}
+                      label="Mutation No."
                       variant="outlined"
                       fullWidth
                       margin="normal"
                       type="text"
                       {...register("mutationNo", {
-                        required: `No. ${
-                          mutationType === "stockIn" ? "PO" : "FPB"
-                        } perlu diisi`,
+                        required: `Mutation No. is required`,
                       })}
                       error={!!errors.mutationNo}
                       helperText={errors.mutationNo?.message}
@@ -256,9 +254,6 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
                     <TextField
                       label="Stok tersedia"
                       disabled
-                      // InputProps={{
-                      //   readOnly: true,
-                      // }}
                       variant="outlined"
                       fullWidth
                       margin="normal"
@@ -281,7 +276,7 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
                           validate: (value) =>
                             value > 0 ||
                             mutationType !== "stockIn" ||
-                            "Nilai harus positif",
+                            "Value must be positive",
                           onChange: (e) => {
                             updateStok(e.target.value);
                           },
@@ -293,7 +288,7 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
 
                     {mutationType === "stockOut" && (
                       <TextField
-                        label="stockOut"
+                        label="Stock out"
                         variant="outlined"
                         fullWidth
                         margin="normal"
@@ -304,7 +299,7 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
                           validate: (value) =>
                             value > 0 ||
                             mutationType !== "stockOut" ||
-                            "Nilai harus positif",
+                            "Value must be positive",
                           onChange: (e) => {
                             updateStok(e.target.value);
                           },
@@ -315,7 +310,7 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
                     )}
 
                     <TextField
-                      label="Stok Akhir"
+                      label="Stok result"
                       InputProps={{
                         readOnly: true,
                       }}
@@ -326,22 +321,20 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
                       defaultValue=""
                       {...register("stockResult", {
                         validate: (value) => value > 0 || "Nilai harus positif",
-                        required: "Stok Akhir perlu diisi",
+                        required: "Stok result is required",
                       })}
                       error={!!errors.stockResult}
                       helperText={errors.stockResult?.message}
                     />
 
                     <TextField
-                      label={mutationType === "stockIn" ? "Vendor" : "Asrama"}
+                      label="Client"
                       variant="outlined"
                       fullWidth
                       margin="normal"
                       type="text"
                       {...register("client", {
-                        required: `${
-                          mutationType === "stockIn" ? "Vendor" : "Asrama"
-                        } perlu diisi`,
+                        required: `Client is required`,
                       })}
                       error={!!errors.client}
                       helperText={errors.client?.message}

@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import CustomDataGrid from '../utils/CustomDatagrid';
 import CustomHeaderBox from '../utils/CustomHeaderBox';
 import ItemForm from './ItemForm';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../utils/FirebaseConfig';
 
 const columns: GridColDef[] = [
@@ -114,7 +114,7 @@ function Items(props: ItemProps) {
   const fetchItems = async () => {
     try {
       const collectionRef = collection(db, "items");
-      const q = query(collectionRef, where("warehouseID", "==", props.warehouseID)); // Query with condition
+      const q = query(collectionRef, where("warehouseID", "==", props.warehouseID));
 
       const snapshot = await getDocs(q);
       const itemData = await snapshot.docs.map((doc: any) => ({
@@ -142,24 +142,26 @@ function Items(props: ItemProps) {
 
   const deleteData = async (rowID: GridRowId) => {
 
-    setIsLoading(true);
-    await fetch( `/barang?userID=$&itemID=${rowID}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer `,
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .catch((error) => {
-        console.error("There was an error:", error);
-        new Error("Error while deleting Barang");
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    try {
+      const accountNo = rowID.toString();
+      setIsLoading(true);
+      const docRef = doc(db, "items", accountNo);
+      await deleteDoc(docRef);
 
-    setRows(rows.filter((row) => row.itemID !== rowID));
+      const mutRef = collection(db, "mutations");
+      const q = query(mutRef, where("accountNo", "==", accountNo));
+      const snapshot = await getDocs(q);
+      snapshot.docs.map((docSnap) =>
+        deleteDoc(doc(db, "mutations", docSnap.id))
+      );
+
+      setRows(rows.filter((row) => row.accountNo !== rowID.toString()));
+    } catch (error) {
+      console.error("Error deleting document: ", error);
+    } finally {
+      setIsLoading(false);
+    }
+    
     return rowID;
   };
 

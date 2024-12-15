@@ -34,7 +34,7 @@ function CustomDataGrid(props: any) {
       isLoading,
       setIsLoading,
 
-      importData,
+      // importData,
       addData,
       updateData,
 
@@ -93,7 +93,7 @@ function CustomDataGrid(props: any) {
           children: `Data successfully deleted`,
           severity: "success",
         });
-        // setRows(rows.filter((row: any) => row.id !== toDelete));
+        setRows(rows.filter((row: any) => row.id !== toDelete));
     };
 
     const handleCloseSnackbar = () => setSnackbar(null);
@@ -115,17 +115,17 @@ function CustomDataGrid(props: any) {
             .slice(0, 10)}`,
         });
 
-      const handleFileChange = (event: any) => {
-        const file = event.target.files[0];
-        if (file && file.name.endsWith(".csv")) {
-          importData(file);
-        } else {
-          setSnackbar({
-            children: "File extension is not supported! (Required: .csv)",
-            severity: "error",
-          });
-        }
-      };
+      // const handleFileChange = (event: any) => {
+      //   const file = event.target.files[0];
+      //   if (file && file.name.endsWith(".csv")) {
+      //     importData(file);
+      //   } else {
+      //     setSnackbar({
+      //       children: "File extension is not supported! (Required: .csv)",
+      //       severity: "error",
+      //     });
+      //   }
+      // };
 
       return (
         <GridToolbarContainer
@@ -162,7 +162,7 @@ function CustomDataGrid(props: any) {
                   }}
                 >
                   Import
-                  <input type="file" hidden onChange={handleFileChange} />
+                  {/* <input type="file" hidden onChange={handleFileChange} /> */}
                 </Button>
               </Box>
             ) : null}
@@ -293,7 +293,7 @@ function CustomDataGrid(props: any) {
             },
           }}
         >
-          <DialogTitle fontWeight="bold">Import Data (BETA)</DialogTitle>
+          <DialogTitle fontWeight="bold">Import Data (Currently Disabled)</DialogTitle>
           <DialogContent>
             <DialogContentText>
               <Box>

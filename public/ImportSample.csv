@@ -1,4 +1,4 @@
-keterangan;jumlah;satuan
-Kaos Anak;45;Pcs
-Celana Dewasa;10;Pcs
-Handuk;30;Pcs
+description;amount;unit
+Shirt;45;Pcs
+Pants;10;Pcs
+Towek;30;Pcs

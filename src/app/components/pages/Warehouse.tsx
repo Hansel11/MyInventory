@@ -1,23 +1,20 @@
 import { GridColDef, GridRowId, GridRowParams, GridRowsProp } from '@mui/x-data-grid';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useAuth from '../utils/useAuth';
 import CustomDataGrid from '../utils/CustomDatagrid';
 import WarehouseForm from './WarehouseForm';
 import CustomHeaderBox from '../utils/CustomHeaderBox';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
 import { db } from '../utils/FirebaseConfig';
 
 type FormValues = {
-  gudangID: number;
+  warehouseID: string;
   name: string;
-  code: string;
 };
 
 const initForm: FormValues = {
-  gudangID: 0,
+  warehouseID: "",
   name: "",
-  code: "",
 };
 
 interface WarehouseProps {
@@ -47,13 +44,11 @@ export default function Warehouse(props: WarehouseProps) {
       );
       setRows(updatedRows);
     } else {
+      newRow.id = newRow.warehouseID;
       setRows([...rows, newRow]);
     }
     setIsFormOpen(false);
   };
-
-  const url = import.meta.env.VITE_API_URL;
-  const {userID, token} = useAuth();
 
   const fetchWarehouse = async () => {
     try {
@@ -83,55 +78,50 @@ export default function Warehouse(props: WarehouseProps) {
   }
 
   const deleteData = async (rowID: GridRowId) => {
+    
     setIsLoading(true);
-    await fetch(url + `/gudang?userID=${userID}&gudangID=${rowID}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((error) => {
-        console.error("There was an error:", error);
-        new Error("Error while deleting Gudang");
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    try {
+      setIsLoading(true);
+      const docRef = doc(db, "warehouses", rowID.toString());
+      await deleteDoc(docRef);
 
-    setRows(rows.filter((row) => row.gudangID !== rowID));
+      setRows(rows.filter((row) => row.warehouseID !== rowID.toString()));
+    } catch (error) {
+      console.error("Error deleting document: ", error);
+    } finally {
+      setIsLoading(false);
+    }
+
     return rowID;
   };
 
   const addData = async () => {
     setFormData(initForm);
-    setFormType("Tambah");
+    setFormType("Add");
     setIsFormOpen(true);
   };
 
   const updateData = async (rowID: GridRowId) => {
     const data = rows.find((row) => row.id === rowID) as FormValues;
     setFormData(data);
-    setFormType("Ubah");
+    setFormType("Edit");
     setIsFormOpen(true);
   };
 
   const columns: GridColDef[] = [
     {
-      field: "name",
-      headerName: "Warehouse",
+      field: "warehouseID",
+      headerName: "Code",
       editable: true,
       width: 160,
     },
     {
-      field: "code",
-      headerName: "Code",
+      field: "name",
+      headerName: "Warehouse",
       editable: true,
       width: 160,
     }
+
   ];
 
   return (
