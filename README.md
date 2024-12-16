@@ -10,7 +10,7 @@ Prior to this, the project was first made with a backend application and SQL dat
 Admittedly, there was a few things I could've done better, like utilizing a state management library like Redux.  
 As of right now, I **do not intend to continue** further updates on this project.  
 
-# Usage
+## Usage
 
 You can access the demo of this web application on <https://sample-warehouse-app.web.app/item>  
 I have setup a dummy account that you can use in this web app (Read Data only):  
