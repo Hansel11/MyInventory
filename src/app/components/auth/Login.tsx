@@ -39,7 +39,7 @@ export default function Login({verifying}: LoginProps) {
           await signInWithEmailAndPassword(auth, data.email, data.password);
           onAuthStateChanged(auth, (user) => {
             if (user) {
-              console.log("User is logged in:", user);
+              console.log("User is logged in");
             }
           });
         } catch (error: any) {

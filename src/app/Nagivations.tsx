@@ -64,7 +64,6 @@ const CustomItem:React.FC<ItemProps> = (props) => {
 
 export default function MainListItems() {
   // TEMP VVVVVVV
-  const role = "Admin";
   const [user] = useAuthState(auth);
 
   return (
@@ -87,7 +86,7 @@ export default function MainListItems() {
         </Link>
       ) : null}
 
-      {role == "Admin" ? (
+      {user ? (
         <Link to="/warehouse" style={{ textDecoration: "none", color: "inherit" }}>
           <CustomItem logo={<WarehouseSharp />} text="Warehouse" />
         </Link>

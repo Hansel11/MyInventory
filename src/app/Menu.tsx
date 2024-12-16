@@ -85,7 +85,6 @@ const Dashboard:React.FC = () => {
 
   const role = "Admin";
   const [user, setUser] = useState<User | null>(null);
-  // const [ user ] = useAuthState(auth);
 
   const [open, setOpen] = useState(true);
   const [warehouseList, setWarehouseList] = useState<any[]>([]);
@@ -118,7 +117,6 @@ const Dashboard:React.FC = () => {
 
     fetchWarehouse();
     return () => unsubscribe();
-
 
   }, []);
 
