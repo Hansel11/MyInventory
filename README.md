@@ -1,33 +1,33 @@
 # MyInventory
 
-MyInventory is a simple CRUD web application made using React and Firebase.
+MyInventory is a simple CRUD web application made using React and Firebase.  
 
 ## Background
 
-MyInventory serves as a sample warehouse / inventory management application that can be deployed on the internet for free.
-This is my first React and Firebase project, serving as my introduction to the technology.
-Prior to this, the project was first made with a backend application and SQL database, before deciding to migrate the entire backend structure.
-Admittedly, there was a few things I could've done better, like utilizing a state management library like Redux.
-As of right now, I **do not intend to continue** further updates on this project.
+MyInventory serves as a sample warehouse / inventory management application that can be deployed on the internet for free.  
+This is my first React and Firebase project, serving as my introduction to the technology.  
+Prior to this, the project was first made with a backend application and SQL database, before deciding to migrate the entire backend structure.  
+Admittedly, there was a few things I could've done better, like utilizing a state management library like Redux.  
+As of right now, I **do not intend to continue** further updates on this project.  
 
 # Usage
 
-You can access the demo of this web application on <https://sample-warehouse-app.web.app/item>
-I have setup a dummy account that you can use in this web app (Read Data only)
-**Username:**guest@myinventory.com
-**Password:**guest1234
-
-The MyInventory application data structure can be summarized as such:
+You can access the demo of this web application on <https://sample-warehouse-app.web.app/item>  
+I have setup a dummy account that you can use in this web app (Read Data only):  
+**Username:** guest@myinventory.com  
+**Password:** guest1234  
+  
+The MyInventory application data structure can be summarized as such:  
 ```
 Warehouses -> Items -> Mutations
 ```
-Where each arrow represents a *one-to-many* relation.
-There were originally feature for a more complex Role-based access limitation in the original code.
-However, because Firebase Authentication does not support user data storage natively, I do not intend to migrate it.
+Where each arrow represents a *one-to-many* relation.  
+There were originally feature for a more complex Role-based access limitation in the original code.  
+However, because Firebase Authentication does not support user data storage natively, I do not intend to migrate it.  
 
 ## Setup
 
-Here is a brief instruction to setup this web application for yourself:
+Here is a brief instruction to setup this web application for yourself:  
 * Create a new firebase project
 * Setup Authentication and Firestore Database
 * Create a User in the Authentication page (using email authentication) for later use
@@ -50,6 +50,6 @@ firebase deploy
 
 ## Evaluation
 
-Feel free to use and modify this code to suit your needs. 
-If you find this repository helpful, please give it a star.🌟
-You can contact me over on: 📧 <hansel.sentosa2@gmail.com>
+Feel free to use and modify this code to suit your needs.   
+If you find this repository helpful, please give it a star.🌟  
+You can contact me over on: 📧 <hansel.sentosa2@gmail.com>  
