@@ -12,10 +12,13 @@ As of right now, I **do not intend to continue** further updates on this project
 
 ## Usage
 
-You can access the demo of this web application on <https://sample-warehouse-app.web.app/item>  
-I have setup a dummy account that you can use in this web app (Read Data only):  
+You can access the demo of this web application on <https://sample-warehouse-app.web.app/>  
+
+I have setup a dummy account that you can use in this web app (Read Data only).  
+You can use it by clicking on the 'Login as Guest' Button, or enter these credentials:  
 **Username:** guest@myinventory.com  
 **Password:** guest1234  
+To modify the data, please follow the instructions below to create your own firebase project and setup an admin account.  
   
 The MyInventory application data structure can be summarized as such:  
 ```

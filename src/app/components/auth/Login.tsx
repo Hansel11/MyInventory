@@ -18,7 +18,6 @@ type FormValues = {
   email: string;
   password: string;
   role: string;
-  userID: string;
 };
 
 interface LoginProps {
@@ -49,6 +48,28 @@ export default function Login({verifying}: LoginProps) {
         finally {
           setIsLoading(false);
         }
+  };
+
+  const authorizeGuest = async () => {
+    let data: FormValues = {
+      email: "guest@myinventory.com",
+      password: "guest1234",
+      role: ""
+    }
+    setIsLoading(true);
+    try {
+      await signInWithEmailAndPassword(auth, data.email, data.password);
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          console.log("User is logged in");
+        }
+      });
+    } catch (error: any) {
+      alert(error.message);
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
 	return (
@@ -112,6 +133,22 @@ export default function Login({verifying}: LoginProps) {
                 sx={{ mt: 3, mb: 2 }}
               >
                 Sign In
+              </LoadingButton>
+
+              <LoadingButton
+                fullWidth
+                variant="contained"
+                sx={{
+                  mb: 2,
+                  backgroundColor: (theme) => theme.palette.primary.light,
+                  color: (theme) => theme.palette.primary.contrastText,
+                  "&:hover": {
+                    backgroundColor: (theme) => theme.palette.primary.main,
+                  },
+                }}
+                onClick={authorizeGuest}
+              >
+                Log in as Guest
               </LoadingButton>
 
               {/* <Grid container>
