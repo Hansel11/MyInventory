@@ -111,13 +111,13 @@ export default function Warehouse(props: WarehouseProps) {
   const columns: GridColDef[] = [
     {
       field: "warehouseID",
-      headerName: "Code",
+      headerName: "コード",
       editable: true,
       width: 160,
     },
     {
       field: "name",
-      headerName: "Warehouse",
+      headerName: "在庫",
       editable: true,
       width: 160,
     }
@@ -128,7 +128,7 @@ export default function Warehouse(props: WarehouseProps) {
     <div style={{ width: "100%" }}>
       
       <CustomHeaderBox
-      title={"Warehouse list"}
+      title={"在庫一覧"}
       />
 
       <WarehouseForm

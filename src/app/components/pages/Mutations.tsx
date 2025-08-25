@@ -131,17 +131,17 @@ export default function Mutations(props: MutationProps) {
     const columns: GridColDef[] = [
       {
         field: "accountNo",
-        headerName: "Account No",
+        headerName: "商品No.",
         width: 120,
       },
       {
         field: "description",
-        headerName: "Item",
+        headerName: "商品",
         width: 240,
       },
       {
         field: "mutationDate",
-        headerName: "Date",
+        headerName: "日付",
         width: 100,
         valueGetter: (params: GridValueGetterParams) => {
           return params.row.mutationDate instanceof Timestamp
@@ -151,12 +151,12 @@ export default function Mutations(props: MutationProps) {
       },
       {
         field: "mutationType",
-        headerName: "Type",
+        headerName: "取引種別",
         width: 160,
       },
       {
         field: "mutationNo",
-        headerName: "Mutation No",
+        headerName: "取引No.",
         width: 120,
         valueGetter: (params: GridValueGetterParams) => {
           return params.row.mutationNo == null ? "-" : params.row.mutationNo;
@@ -164,7 +164,7 @@ export default function Mutations(props: MutationProps) {
       },
       {
         field: "stockIn",
-        headerName: "In",
+        headerName: "入庫",
         type: "number",
         width: 80,
         valueGetter: (params: GridValueGetterParams) => {
@@ -175,7 +175,7 @@ export default function Mutations(props: MutationProps) {
       },
       {
         field: "stockOut",
-        headerName: "Out",
+        headerName: "出庫",
         type: "number",
         width: 80,
         valueGetter: (params: GridValueGetterParams) => {
@@ -186,13 +186,13 @@ export default function Mutations(props: MutationProps) {
       },
       {
         field: "stockResult",
-        headerName: "Result",
+        headerName: "残高",
         type: "number",
         width: 100,
       },
       {
         field: "client",
-        headerName: "Client",
+        headerName: "クライエント",
         width: 160,
         valueGetter: (params: GridValueGetterParams) => {
           return params.row.client == null ? "-" : params.row.client;
@@ -232,7 +232,7 @@ export default function Mutations(props: MutationProps) {
         formData={formData}
       />
       <CustomHeaderBox
-      title = {"Mutation List"}
+      title = {"履歴"}
       subtitle = {itemName}
 
         right={<Box>

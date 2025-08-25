@@ -10,10 +10,10 @@ import { collection, deleteDoc, doc, getDocs, query, where } from 'firebase/fire
 import { db } from '../utils/FirebaseConfig';
 
 const columns: GridColDef[] = [
-  { field: "accountNo", headerName: "Account No.", width: 150, editable: true },
-  { field: "description", headerName: "Item", width: 420, editable: true },
-  { field: "amount", headerName: "Amount", type: "number", width: 100, editable: true },
-  { field: "unit", headerName: "Unit", width: 120, editable: true }
+  { field: "accountNo", headerName: "商品No.", width: 150, editable: true },
+  { field: "description", headerName: "商品", width: 420, editable: true },
+  { field: "amount", headerName: "数量", type: "number", width: 100, editable: true },
+  { field: "unit", headerName: "単位", width: 120, editable: true }
 ];
 
 type FormValues = {
@@ -277,7 +277,7 @@ function Items(props: ItemProps) {
       />
 
       <CustomHeaderBox
-        title={"Item list"}
+        title={"商品一覧"}
         right={
           <Box>
             <TextField
