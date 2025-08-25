@@ -36,7 +36,7 @@ function CustomDataGrid(props: any) {
     isLoading,
     setIsLoading,
 
-    // importData,
+    importData,
     addData,
     updateData,
 
@@ -116,17 +116,17 @@ function CustomDataGrid(props: any) {
           .slice(0, 10)}`,
       });
 
-    // const handleFileChange = (event: any) => {
-    //   const file = event.target.files[0];
-    //   if (file && file.name.endsWith(".csv")) {
-    //     importData(file);
-    //   } else {
-    //     setSnackbar({
-    //       children: "File extension is not supported! (Required: .csv)",
-    //       severity: "error",
-    //     });
-    //   }
-    // };
+    const handleFileChange = (event: any) => {
+      const file = event.target.files[0];
+      if (file && file.name.endsWith(".csv")) {
+        importData(file);
+      } else {
+        setSnackbar({
+          children: "File extension is not supported! (Required: .csv)",
+          severity: "error",
+        });
+      }
+    };
 
     return (
       <GridToolbarContainer
@@ -143,7 +143,9 @@ function CustomDataGrid(props: any) {
           }}
         >
           {enableImport && crudAccess ? (
-            <Box>
+            <Box
+            sx={{ display: 'none' }} /// !!!!!!!!!!!!!!!!!!!! DELETE THIS LINE TO RE ENABLE IMPORT FEATURE !!!!!!!!!!!!!!!!!
+            >
               <IconButton color="primary" onClick={openImportHelp}>
                 <HelpOutline />
               </IconButton>
@@ -161,7 +163,7 @@ function CustomDataGrid(props: any) {
                 }}
               >
                 Import
-                {/* <input type="file" hidden onChange={handleFileChange} /> */}
+                <input type="file" hidden onChange={handleFileChange} />
               </Button>
             </Box>
           ) : null}

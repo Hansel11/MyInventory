@@ -1,5 +1,11 @@
 import MenuIcon from '@mui/icons-material/Menu';
-import { ListItemIcon } from '@mui/material';
+import {
+  ListItemIcon,
+  // Button,
+  // Menu as ReactMenu,
+  // MenuItem
+} from '@mui/material';
+// import LanguageIcon from '@mui/icons-material/Language';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -90,7 +96,7 @@ const Dashboard:React.FC = () => {
   const [warehouseList, setWarehouseList] = useState<any[]>([]);
   const [warehouseID, setWarehouseID] = useState("");
   const [verifying, setVerifying] = useState(true);
-  
+  // const [anchorEl, setAnchorEl] = useState(null);
 
   const fetchWarehouse = async () => {
     try {
@@ -125,6 +131,14 @@ const Dashboard:React.FC = () => {
   };
 
   const { theme, setTheme } = useThemeMode();
+  // const { themeLocale } = useTheme();
+
+  //   const [locale, setLocale] = useState<SupportedLocales>('enUS');
+
+  // const themeWithLocale = useMemo(
+  //   () => createTheme(themeLocale, locales[locale]),
+  //   [locale, themeLocale],
+  // );
 
   const handleSwitch = () => {
     const newTheme = theme == "dark" ? "light" : "dark";
@@ -145,6 +159,19 @@ const Dashboard:React.FC = () => {
       fontFamily: "Montserrat, sans-serif",
     },
   });
+
+  // const handleClick = (event: any) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
+
+  // const handleClose = () => {
+  //   setAnchorEl(null);
+  // };
+
+  // const setLang = (lang: String) => {
+  //   console.log(lang);
+  // }
+
 
   return (
     <ThemeProvider theme={theme == "dark" ? darkTheme : lightTheme}>
@@ -192,7 +219,61 @@ const Dashboard:React.FC = () => {
               </Box>
             </Typography>
 
-            <Box display="flex" alignItems="center">
+            <Box display="flex" alignItems="center" justifyContent="center">
+              {/* <Box>
+                
+                  <>
+                
+                      <Button
+                        aria-controls="simple-menu"
+                        aria-haspopup="true"
+                        onClick={handleClick}
+                        sx={{
+                          marginTop: 0,
+                          // marginBottom:2,
+                          borderRadius: 4,
+                          textTransform: "none",
+                          textDecoration: "none",
+                          color: "white",
+                        }}
+                      >
+                        <LanguageIcon/>
+                      </Button>
+                
+                      <ReactMenu
+                        id="simple-menu"
+                        anchorEl={anchorEl}
+                        keepMounted
+                        open={Boolean(anchorEl)}
+                        onClose={handleClose}
+                      >
+                        <MenuItem
+                          onClick={() => setLang("en")}
+                        >
+                          <Box
+                            sx={{
+                              display: "flex",
+                              width: "100%",
+                            }}
+                          >
+                            English
+                          </Box>
+                        </MenuItem>
+                        <MenuItem
+                          onClick={() => setLang("ja")}
+                        >
+                          <Box
+                            sx={{
+                              display: "flex",
+                              width: "100%",
+                            }}
+                          >
+                            日本語
+                          </Box>
+                        </MenuItem>
+                      </ReactMenu>
+                    </>
+              </Box> */}
               <Box>
                 <ThemeSwitch
                   checked={theme == "dark"}
