@@ -100,7 +100,7 @@ export default function WarehouseForm({ open, handleClose, handleConfirm, type, 
               >
 
                 <TextField
-                  label="Code"
+                  label="コード"
                   variant="outlined"
                   fullWidth
                   margin="normal"
@@ -116,7 +116,7 @@ export default function WarehouseForm({ open, handleClose, handleConfirm, type, 
                 />
 
                 <TextField
-                  label="Name"
+                  label="在庫名"
                   variant="outlined"
                   fullWidth
                   margin="normal"
@@ -135,7 +135,7 @@ export default function WarehouseForm({ open, handleClose, handleConfirm, type, 
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
                 >
-                  Save
+                  保存
                 </LoadingButton>
               </Box>
             </Box>

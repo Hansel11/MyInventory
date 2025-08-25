@@ -21,21 +21,22 @@ export default function About() {
           ></link>
 
           <Box>
-            This web Application is created using React and Firebase.
+            このWebアプリケーションはReactとFirebaseで作成されています。
             <br />
-            Feel free to use and modify this code to suit your needs.
+            ご自身のニーズに合わせて、このコードを自由に使用、修正してください。
             <br />
-            If you find this{" "}
+            
+            もしこの{" "}
             <a
               href="https://github.com/Hansel11/MyInventory"
               target="_blank"
               rel="noopener noreferrer"
             >
-              repository
+              リポジトリ
             </a>{" "}
-            helpful, please give it a star.🌟
+            がお役に立ちましたら、スターをお願いします。🌟
             <br />
-            You can contact me over on:
+            連絡先はこちら：
             <br />
             {/* <Typography sx={{ fontSize: 16 }}>
               <i

@@ -136,7 +136,7 @@ export default function ItemForm({ open, handleClose, handleConfirm, toImport, w
         <DialogContent>
           <Container maxWidth="xs">
             <Box>
-              <h1>{type} Item</h1>
+              <h1>{type}</h1>
               <Box
                 component="form"
                 onSubmit={handleSubmit(formSubmit)}
@@ -147,7 +147,7 @@ export default function ItemForm({ open, handleClose, handleConfirm, toImport, w
                 <input type="hidden" {...register("warehouseID")} />
 
                 <TextField
-                  label="Account No."
+                  label="商品No."
                   variant="outlined"
                   fullWidth
                   margin="normal"
@@ -161,7 +161,7 @@ export default function ItemForm({ open, handleClose, handleConfirm, toImport, w
                 />
 
                 <TextField
-                  label="Item"
+                  label="商品"
                   variant="outlined"
                   fullWidth
                   margin="normal"
@@ -174,7 +174,7 @@ export default function ItemForm({ open, handleClose, handleConfirm, toImport, w
                 />
 
                 <TextField
-                  label={type === "Edit" ? "Amount" : "Initial stock"}
+                  label={type === "Edit" ? "数量" : "初期在庫"}
                   variant="outlined"
                   fullWidth
                   margin="normal"
@@ -188,7 +188,7 @@ export default function ItemForm({ open, handleClose, handleConfirm, toImport, w
                 />
 
                 <TextField
-                  label="Unit"
+                  label="単位"
                   variant="outlined"
                   fullWidth
                   margin="normal"
@@ -207,7 +207,7 @@ export default function ItemForm({ open, handleClose, handleConfirm, toImport, w
                   variant="contained"
                   sx={{ mt: 3, mb: 2,  fontWeight: "bold"}}
                 >
-                  Save
+                  保存
                 </LoadingButton>
               </Box>
             </Box>

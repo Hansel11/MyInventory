@@ -240,13 +240,13 @@ export default function Mutations(props: MutationProps) {
             <Box sx={{ display: "flex", gap: "8px" }}>
               <DatePicker
                 sx={{ width: "160px" }}
-                label="Start Date"
+                label="開始日"
                 value={startDate}
                 onChange={(newValue) => setStartDate(newValue)}
               />
               <DatePicker
                 sx={{ width: "160px" }}
-                label="End Date"
+                label="終了日"
                 value={endDate}
                 onChange={(newValue) => setEndDate(newValue)}
               />

@@ -282,7 +282,7 @@ function Items(props: ItemProps) {
           <Box>
             <TextField
               select
-              label="Warehouse"
+              label="在庫"
               variant="outlined"
               type="text"
               sx={{
