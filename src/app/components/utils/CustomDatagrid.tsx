@@ -181,7 +181,8 @@ function CustomDataGrid(props: any) {
               }}
               onClick={() => handleExport()}
             >
-              Export
+              エクスポート
+              {/* Export */}
             </Button>
           ) : null}
 
@@ -198,7 +199,8 @@ function CustomDataGrid(props: any) {
                 fontWeight: "bold",
               }}
             >
-              Add {dataType}
+              新規登録 
+              {/* {dataType} */}
             </Button>
           ) : null}
         </Box>
@@ -209,7 +211,7 @@ function CustomDataGrid(props: any) {
   const actionField: GridColDef = {
     field: "actions",
     type: "actions",
-    headerName: (enableEdit || enableDelete) && crudAccess ? "Actions" : "",
+    headerName: (enableEdit || enableDelete) && crudAccess ? "操作" : "",
     width: 100,
     cellClassName: "actions",
     align: "right",
@@ -267,16 +269,16 @@ function CustomDataGrid(props: any) {
           },
         }}
       >
-        <DialogTitle fontWeight="bold">Hapus data</DialogTitle>
+        <DialogTitle fontWeight="bold">削除 </DialogTitle>
         <DialogContent>
-          <DialogContentText>Delete this {dataType}?</DialogContentText>
+          <DialogContentText>この項目を削除しますか？</DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={closePopup} color="primary">
-            Cancel
+            キャンセル
           </Button>
           <Button onClick={confirmDelete} color="error">
-            Delete
+            削除
           </Button>
         </DialogActions>
       </Dialog>

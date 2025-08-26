@@ -29,16 +29,16 @@ export const LogoutPopup: React.FC<LogoutPopupProps> = ({
         },
       }}
     >
-      <DialogTitle fontWeight={"bold"}>Logout</DialogTitle>
+      <DialogTitle fontWeight={"bold"}>ログアウト</DialogTitle>
       <DialogContent>
-        <DialogContentText>Are you sure you want to log out?</DialogContentText>
+        <DialogContentText> ログアウトしますか？</DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} color="primary">
-          Cancel
+          キャンセル
         </Button>
         <Button onClick={handleLogout} color="primary">
-          Logout
+          はい
         </Button>
       </DialogActions>
     </Dialog>

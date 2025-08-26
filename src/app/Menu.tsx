@@ -215,7 +215,7 @@ const Dashboard:React.FC = () => {
                   fontFamily: "Poppins",
                 }}
               >
-                MyInventory
+                マイインベントリー
               </Box>
             </Typography>
 

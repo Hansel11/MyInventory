@@ -91,7 +91,7 @@ export default function Login({verifying}: LoginProps) {
             <Avatar sx={{ m: 1, bgcolor: "primary.dark" }}>
               <LockOutlinedIcon />
             </Avatar>
-            <h1>Login</h1>
+            <h1>ログイン</h1>
             <Box
               component="form"
               onSubmit={handleSubmit(formSubmit)}
@@ -99,7 +99,7 @@ export default function Login({verifying}: LoginProps) {
               noValidate
             >
               <TextField
-                label="Email"
+                label="メール"
                 variant="outlined"
                 fullWidth
                 margin="normal"
@@ -112,7 +112,7 @@ export default function Login({verifying}: LoginProps) {
               />
 
               <TextField
-                label="Password"
+                label="パスワード"
                 variant="outlined"
                 fullWidth
                 autoComplete="new-password"
@@ -132,7 +132,7 @@ export default function Login({verifying}: LoginProps) {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                ログイン
               </LoadingButton>
 
               <LoadingButton
@@ -148,7 +148,7 @@ export default function Login({verifying}: LoginProps) {
                 }}
                 onClick={authorizeGuest}
               >
-                Log in as Guest
+                ゲストとしてログイン
               </LoadingButton>
 
               {/* <Grid container>

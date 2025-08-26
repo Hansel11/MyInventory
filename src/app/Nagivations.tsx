@@ -70,25 +70,25 @@ export default function MainListItems() {
     <Box>
       {!user ? (
         <Link to="/login" style={{ textDecoration: "none", color: "inherit" }}>
-          <CustomItem logo={<Person />} text="Login" />
+          <CustomItem logo={<Person />} text="ログイン" />
         </Link>
       ) : null}
 
       {user ? (
         <Link to="/item" style={{ textDecoration: "none", color: "inherit" }}>
-          <CustomItem logo={<Inventory />} text="Item" />
+          <CustomItem logo={<Inventory />} text="商品" />
         </Link>
       ) : null}
 
       {user ? (
         <Link to="/mutation" style={{ textDecoration: "none", color: "inherit" }}>
-          <CustomItem logo={<BarChartIcon />} text="Mutation" />
+          <CustomItem logo={<BarChartIcon />} text="履歴" />
         </Link>
       ) : null}
 
       {user ? (
         <Link to="/warehouse" style={{ textDecoration: "none", color: "inherit" }}>
-          <CustomItem logo={<WarehouseSharp />} text="Warehouse" />
+          <CustomItem logo={<WarehouseSharp />} text="在庫" />
         </Link>
       ) : null}
       
@@ -108,7 +108,7 @@ export default function MainListItems() {
 export const bottomListItems = (
   <>
     <Link to="/about" style={{ textDecoration: "none", color: "inherit" }}>
-      <CustomItem logo={<Help />} text="About" />
+      <CustomItem logo={<Help />} text="概要" />
     </Link>
   </>
 );
@@ -201,7 +201,7 @@ export function AuthNavItems() {
             }}
           >
             <Logout sx={{ mr:1, color: theme.palette.error.main }} />
-            Logout
+            ログアウト
           </Box>
         </MenuItem>
       </Menu>
@@ -215,7 +215,7 @@ export function GuestNavItems() {
   return(
   <Link to="/login" style={{ textDecoration: "none", color: "inherit" }}>
     <ListItemButton sx={{ borderRadius: 6 }}>
-      <ListItemText primary="Login" style={{ marginRight: 16 }} />
+      <ListItemText primary="ログイン" style={{ marginRight: 16 }} />
       <LoginIcon />
     </ListItemButton>
   </Link>
