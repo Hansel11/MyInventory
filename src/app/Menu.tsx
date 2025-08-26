@@ -41,6 +41,7 @@ import { auth, db } from './components/utils/FirebaseConfig';
 import { onAuthStateChanged, User } from 'firebase/auth';
 
 // import Profile from './components/auth/Profile';
+import { jaJP } from '@mui/material/locale';
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
@@ -152,13 +153,13 @@ const Dashboard:React.FC = () => {
     typography: {
       fontFamily: "Montserrat, sans-serif",
     },
-  });
+  }, jaJP);
 
   const lightTheme = createTheme({
     typography: {
       fontFamily: "Montserrat, sans-serif",
     },
-  });
+  }, jaJP);
 
   // const handleClick = (event: any) => {
   //   setAnchorEl(event.currentTarget);

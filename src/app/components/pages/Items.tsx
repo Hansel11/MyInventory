@@ -172,14 +172,14 @@ function Items(props: ItemProps) {
       newForm.accountNo = newNoAcc;
       newForm.warehouseID = props.warehouseID;
       setFormData(newForm);
-      setFormType("Add");
+      setFormType("新規");
       setIsFormOpen(true);
     };
 
     const updateData = async (rowID: GridRowId) => {
       const data = rows.find((row) => row.id === rowID) as FormValues;
       setFormData(data);
-      setFormType("Edit");
+      setFormType("編集");
       setIsFormOpen(true);
     };
 

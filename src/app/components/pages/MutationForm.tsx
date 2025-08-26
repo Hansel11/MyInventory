@@ -60,8 +60,8 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
   }, []);
 
   const mutationOpt = [
-    { label: "stockIn", value: "stockIn" },
-    { label: "stockOut", value: "stockOut" },
+    { label: "入庫", value: "stockIn" },
+    { label: "出庫", value: "stockOut" },
   ];
   const [mutationType, setmutationType] = useState("");
 
@@ -172,7 +172,7 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
         <DialogContent>
           <Container maxWidth="xs">
             <Box>
-              <h1>{type} Mutation</h1>
+              <h1>{type}</h1>
               <Box
                 component="form"
                 onSubmit={handleSubmit(formSubmit)}
@@ -182,7 +182,7 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
                 <input type="hidden" {...register("mutationID")} />
 
                 <TextField
-                  label="No Account"
+                  label="商品No."
                   variant="outlined"
                   fullWidth
                   margin="normal"
@@ -216,7 +216,7 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
 
                 <TextField
                   select
-                  label="Mutation type"
+                  label="取引種別"
                   variant="outlined"
                   fullWidth
                   margin="normal"
@@ -240,7 +240,7 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
                 {mutationType != "" && (
                   <>
                     <TextField
-                      label="Mutation No."
+                      label="取引No."
                       variant="outlined"
                       fullWidth
                       margin="normal"
@@ -253,7 +253,7 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
                     />
 
                     <TextField
-                      label="Available stock"
+                      label="残高"
                       disabled
                       variant="outlined"
                       fullWidth
@@ -266,7 +266,7 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
 
                     {mutationType === "stockIn" && (
                       <TextField
-                        label="stockIn"
+                        label="入庫"
                         variant="outlined"
                         fullWidth
                         margin="normal"
@@ -289,7 +289,7 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
 
                     {mutationType === "stockOut" && (
                       <TextField
-                        label="Stock out"
+                        label="出庫"
                         variant="outlined"
                         fullWidth
                         margin="normal"
@@ -311,7 +311,7 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
                     )}
 
                     <TextField
-                      label="Stok result"
+                      label="結果"
                       InputProps={{
                         readOnly: true,
                       }}
@@ -329,7 +329,7 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
                     />
 
                     <TextField
-                      label="Client"
+                      label="クライエント"
                       variant="outlined"
                       fullWidth
                       margin="normal"
@@ -350,7 +350,7 @@ export default function MutationForm({ accountNo, open, handleClose, handleConfi
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
                 >
-                  Save
+                  保存
                 </LoadingButton>
               </Box>
             </Box>

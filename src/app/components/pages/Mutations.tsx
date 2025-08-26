@@ -124,7 +124,7 @@ export default function Mutations(props: MutationProps) {
 
       const addData = async () => {
         setFormData(initForm);
-        setFormType("Add");
+        setFormType("新規");
         setIsFormOpen(true);
       };
     

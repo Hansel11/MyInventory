@@ -97,14 +97,14 @@ export default function Warehouse(props: WarehouseProps) {
 
   const addData = async () => {
     setFormData(initForm);
-    setFormType("Add");
+    setFormType("新規");
     setIsFormOpen(true);
   };
 
   const updateData = async (rowID: GridRowId) => {
     const data = rows.find((row) => row.id === rowID) as FormValues;
     setFormData(data);
-    setFormType("Edit");
+    setFormType("編集");
     setIsFormOpen(true);
   };
 
@@ -143,7 +143,7 @@ export default function Warehouse(props: WarehouseProps) {
         rows={rows}
         setRows={setRows}
         columns={columns}
-        dataType={"warehouse"}
+        dataType={""}
         
         enableEdit={true}
         enableDelete={true}
